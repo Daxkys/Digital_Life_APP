@@ -5,4 +5,5 @@
     <string name="password">Password</string>
     <string name="link">Link</string>
     <string name="ok">OK</string>
+    <string name="fail_input_account">Put text in Account and Username field</string>
 </resources>

@@ -4,20 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_horizontal"
     android:orientation="vertical"
     android:padding="20dp"
-    tools:context=".Add_account">
+    tools:context=".Account">
 
 
-            <EditText
-                android:id="@+id/et_account"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="@string/account"
-                android:inputType="textCapWords"
-                android:singleLine="true" />
+    <EditText
+        android:id="@+id/et_account"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/account"
+        android:inputType="textCapWords"
+        android:selectAllOnFocus="true"
+        android:singleLine="true" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -85,15 +85,10 @@
             android:singleLine="true" />
     </LinearLayout>
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
-
     <Button
-        android:id="@+id/b_ok"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="end"
         android:onClick="close_activity"
         android:text="@string/ok" />
 </LinearLayout>
