@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Digital Life</string>
+    <string name="password">Contraseña</string>
+    <string name="account">Cuenta</string>
+    <string name="username">Usuario</string>
+    <string name="ok">ACEPTAR</string>
+    <string name="link">Enlace</string>
+</resources>

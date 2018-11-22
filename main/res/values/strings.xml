@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Digital Life</string>
+    <string name="account">Account</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="link">Link</string>
+    <string name="ok">OK</string>
 </resources>
