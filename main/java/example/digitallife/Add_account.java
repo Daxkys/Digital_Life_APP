@@ -12,7 +12,7 @@ public class Add_account extends AppCompatActivity {
         setContentView(R.layout.activity_add_account);
     }
 
-    public void closeActivity(View view) {
+    public void close_activity(View view) {
         finish();
     }
 }

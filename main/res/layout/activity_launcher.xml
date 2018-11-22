@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="20dp"
-        android:onClick="openActivityAccount"
+        android:onClick="start_Add_account"
         app:backgroundTint="@color/colorPrimary"
         app:srcCompat="@drawable/ic_add" />
 

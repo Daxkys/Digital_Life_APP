@@ -13,7 +13,7 @@ public class Launcher extends AppCompatActivity {
         setContentView(R.layout.activity_launcher);
     }
 
-    public void openActivityAccount (View view) {
+    public void start_Add_account (View view) {
         Intent openActivity = new Intent(this, Add_account.class);
         startActivity(openActivity);
     }
