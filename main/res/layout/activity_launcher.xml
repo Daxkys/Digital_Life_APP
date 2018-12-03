@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Launcher">
+    tools:context=".Activity_launcher">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="20dp"
-        android:onClick="start_Add_account"
+        android:onClick="insert_account"
         app:backgroundTint="@color/colorPrimary"
         app:srcCompat="@drawable/ic_add" />
 

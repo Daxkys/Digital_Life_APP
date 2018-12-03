@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="20dp"
-    tools:context=".Account">
+    tools:context=".Activity_account">
 
 
     <EditText
@@ -90,7 +90,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
-        android:onClick="close_activity"
+        android:onClick="result_launcher"
         android:text="@string/ok" />
 
     <Space
@@ -104,6 +104,5 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@android:color/holo_red_light"
-        android:src="@drawable/ic_delete"
-        android:visibility="gone" />
+        android:src="@drawable/ic_delete"/>
 </LinearLayout>

@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class Launcher extends AppCompatActivity {
+public class Activity_launcher extends AppCompatActivity {
 
     static final int INSERT_ACCOUNT = 1;
     static final int UPDATE_ACCOUNT = 2;
@@ -90,20 +90,20 @@ public class Launcher extends AppCompatActivity {
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                start_update_account(v);
+                update_account(v);
             }
         });
         ll_list.addView(b);
     }
 
-   public void start_Add_account(View view) {
-        Intent start_account = new Intent(this, Account.class);
+   public void insert_account(View view) {
+        Intent start_account = new Intent(this, Activity_account.class);
         startActivityForResult(start_account, INSERT_ACCOUNT);
     }
 
-    public void start_update_account(View view) {
+    public void update_account(View view) {
         Button b = (Button) view;
-        Intent start_account = new Intent(this, Account.class);
+        Intent start_account = new Intent(this, Activity_account.class);
         start_account.putExtra("ACCOUNT", b.getText());
         startActivityForResult(start_account, UPDATE_ACCOUNT);
     }

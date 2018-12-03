@@ -8,7 +8,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-public class Account extends AppCompatActivity {
+public class Activity_account extends AppCompatActivity {
 
     EditText et_account;
     EditText et_link;
@@ -30,11 +30,10 @@ public class Account extends AppCompatActivity {
         Intent i = getIntent();
         String account = i.getStringExtra("ACCOUNT");
         et_account.setText(account);
-        //b_delete.setVisibility(View.GONE);
 
     }
 
-    public void close_activity(View view) {
+    public void result_launcher(View view) {
         String account = et_account.getText().toString();
         String link = et_link.getText().toString();
         String username = et_username.getText().toString();
