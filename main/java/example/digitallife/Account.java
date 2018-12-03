@@ -5,22 +5,36 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 public class Account extends AppCompatActivity {
+
+    EditText et_account;
+    EditText et_link;
+    EditText et_username;
+    EditText et_password;
+    ImageButton b_delete;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
+
+        et_account = findViewById(R.id.et_account);
+        et_link = findViewById(R.id.et_link);
+        et_username = findViewById(R.id.et_username);
+        et_password = findViewById(R.id.et_password);
+        b_delete = findViewById(R.id.b_delete);
+
+        Intent i = getIntent();
+        String account = i.getStringExtra("ACCOUNT");
+        et_account.setText(account);
+        //b_delete.setVisibility(View.GONE);
+
     }
 
     public void close_activity(View view) {
-        EditText et_account = findViewById(R.id.et_account);
-        EditText et_link = findViewById(R.id.et_link);
-        EditText et_username = findViewById(R.id.et_username);
-        EditText et_password = findViewById(R.id.et_password);
-
         String account = et_account.getText().toString();
         String link = et_link.getText().toString();
         String username = et_username.getText().toString();

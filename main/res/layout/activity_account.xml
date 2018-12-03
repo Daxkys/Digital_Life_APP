@@ -60,7 +60,7 @@
             android:ems="10"
             android:hint="@string/username"
             android:inputType="text"
-            android:singleLine="true" />
+            android:singleLine="true"/>
     </LinearLayout>
 
     <LinearLayout
@@ -82,13 +82,28 @@
             android:ems="10"
             android:hint="@string/password"
             android:inputType="textPassword"
-            android:singleLine="true" />
+            android:singleLine="true"/>
     </LinearLayout>
 
     <Button
+        android:id="@+id/b_ok"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
         android:onClick="close_activity"
         android:text="@string/ok" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+
+    <ImageButton
+        android:id="@+id/b_delete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@android:color/holo_red_light"
+        android:src="@drawable/ic_delete"
+        android:visibility="gone" />
 </LinearLayout>

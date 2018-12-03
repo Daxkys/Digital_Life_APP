@@ -14,6 +14,8 @@ import java.util.ArrayList;
 public class Launcher extends AppCompatActivity {
 
     static final int INSERT_ACCOUNT = 1;
+    static final int UPDATE_ACCOUNT = 2;
+
     ArrayList<String> hardcode = new ArrayList<>();
     LinearLayout ll_list;
 
@@ -85,12 +87,25 @@ public class Launcher extends AppCompatActivity {
     public void addAccountToList(String account) {
         Button b = new Button(this);
         b.setText(account);
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                start_update_account(v);
+            }
+        });
         ll_list.addView(b);
     }
 
-   public void start_Add_account (View view) {
-        Intent openActivity = new Intent(this, Account.class);
-        startActivityForResult(openActivity, INSERT_ACCOUNT);
+   public void start_Add_account(View view) {
+        Intent start_account = new Intent(this, Account.class);
+        startActivityForResult(start_account, INSERT_ACCOUNT);
+    }
+
+    public void start_update_account(View view) {
+        Button b = (Button) view;
+        Intent start_account = new Intent(this, Account.class);
+        start_account.putExtra("ACCOUNT", b.getText());
+        startActivityForResult(start_account, UPDATE_ACCOUNT);
     }
 
     @Override
@@ -106,5 +121,9 @@ public class Launcher extends AppCompatActivity {
                 addAccountToList(account + " - " + username);
             }
         }
+        if (requestCode == UPDATE_ACCOUNT) {
+
+        }
+
     }
 }
