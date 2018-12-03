@@ -10,45 +10,47 @@ import android.widget.Toast;
 
 public class Activity_account extends AppCompatActivity {
 
-    EditText et_account;
+    EditText et_name;
     EditText et_link;
-    EditText et_username;
-    EditText et_password;
+    EditText et_user;
+    EditText et_pass;
     ImageButton b_delete;
+    String account;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
 
-        et_account = findViewById(R.id.et_account);
+        et_name = findViewById(R.id.et_name);
         et_link = findViewById(R.id.et_link);
-        et_username = findViewById(R.id.et_username);
-        et_password = findViewById(R.id.et_password);
+        et_user = findViewById(R.id.et_user);
+        et_pass = findViewById(R.id.et_pass);
         b_delete = findViewById(R.id.b_delete);
 
         Intent i = getIntent();
-        String account = i.getStringExtra("ACCOUNT");
-        et_account.setText(account);
+        account = i.getStringExtra("ACCOUNT");
+        et_name.setText(account);
 
     }
 
     public void result_launcher(View view) {
-        String account = et_account.getText().toString();
+        String name = et_name.getText().toString();
         String link = et_link.getText().toString();
-        String username = et_username.getText().toString();
-        String password = et_password.getText().toString();
+        String user = et_user.getText().toString();
+        String pass = et_pass.getText().toString();
 
-        if (account.length() != 0 && username.length() != 0) {
+        if (name.isEmpty()) {
+            Toast.makeText(this, R.string.fail_input_account, Toast.LENGTH_LONG).show();
+        } else {
             Intent back_launcher = getIntent();
-            back_launcher.putExtra("ACCOUNT", account);
+            back_launcher.putExtra("NAME", name);
             back_launcher.putExtra("LINK", link);
-            back_launcher.putExtra("USERNAME", username);
-            back_launcher.putExtra("PASSWORD", password);
+            back_launcher.putExtra("USER", user);
+            back_launcher.putExtra("PASS", pass);
+            back_launcher.putExtra("ACCOUNT", account);
             setResult(RESULT_OK, back_launcher);
             finish();
-        } else {
-            Toast.makeText(this, R.string.fail_input_account, Toast.LENGTH_SHORT).show();
         }
     }
 }

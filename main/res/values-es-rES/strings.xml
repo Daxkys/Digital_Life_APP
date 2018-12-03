@@ -6,5 +6,5 @@
     <string name="username">Usuario</string>
     <string name="ok">ACEPTAR</string>
     <string name="link">Enlace</string>
-    <string name="fail_input_account">Debes rellenar las casillas Cuenta y Usuario</string>
+    <string name="fail_input_account">pon como mínimo el nombre de cuenta</string>
 </resources>
