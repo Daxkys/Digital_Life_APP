@@ -62,6 +62,16 @@ public class Activity_launcher extends AppCompatActivity {
         ll_list.addView(b);
     }
 
+    /**
+     * UPDATE ONLY THE CHANGED BUTTON AND NO ALL THE LINEAR LAYOUT (?)
+     */
+    private void reloadLauncher() {
+        ll_list.removeAllViews();
+        for (Account a : hardcode) {
+            addButtonToList(a.getName());
+        }
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
@@ -89,16 +99,6 @@ public class Activity_launcher extends AppCompatActivity {
                 }
                 reloadLauncher();
             }
-        }
-    }
-
-    /**
-     * // UPDATE ONLY THE CHANGED BUTTON AND NO ALL THE LINEAR LAYOUT (?)
-     */
-    private void reloadLauncher() {
-        ll_list.removeAllViews();
-        for (Account a : hardcode) {
-            addButtonToList(a.getName());
         }
     }
 }

@@ -34,6 +34,26 @@ public class Activity_account extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onSaveInstanceState (Bundle state) {
+        state.putString("NAME",et_name.getText().toString());
+        state.putString("LINK",et_link.getText().toString());
+        state.putString("USER",et_user.getText().toString());
+        state.putString("PASS",et_pass.getText().toString());
+
+        super.onSaveInstanceState(state);
+    }
+
+    @Override
+    public void onRestoreInstanceState (Bundle state) {
+        super.onRestoreInstanceState(state);
+
+        et_name.setText(state.getString("NAME"));
+        et_link.setText(state.getString("LINK"));
+        et_user.setText(state.getString("USER"));
+        et_pass.setText(state.getString("PASS"));
+    }
+
     public void result_launcher(View view) {
         String name = et_name.getText().toString();
         String link = et_link.getText().toString();
