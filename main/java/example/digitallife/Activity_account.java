@@ -5,33 +5,36 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.Toast;
 
+import example.digitallife.DB.Account;
+import example.digitallife.DB.DIgitalLife_DB;
+
 public class Activity_account extends AppCompatActivity {
+
+    DIgitalLife_DB db;
 
     EditText et_name;
     EditText et_link;
     EditText et_user;
     EditText et_pass;
-    ImageButton b_delete;
-    String account;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
 
+        db = DIgitalLife_DB.getInstance(this);
+
         et_name = findViewById(R.id.et_name);
         et_link = findViewById(R.id.et_link);
         et_user = findViewById(R.id.et_user);
         et_pass = findViewById(R.id.et_pass);
-        b_delete = findViewById(R.id.b_delete);
 
         Intent i = getIntent();
-        account = i.getStringExtra("ACCOUNT");
-        et_name.setText(account);
+        String query = i.getStringExtra("ACCOUNT");
 
+        et_name.setText(query);
     }
 
     @Override
@@ -63,13 +66,10 @@ public class Activity_account extends AppCompatActivity {
         if (name.isEmpty()) {
             Toast.makeText(this, R.string.fail_input_account, Toast.LENGTH_LONG).show();
         } else {
-            Intent back_launcher = getIntent();
-            back_launcher.putExtra("NAME", name);
-            back_launcher.putExtra("LINK", link);
-            back_launcher.putExtra("USER", user);
-            back_launcher.putExtra("PASS", pass);
-            back_launcher.putExtra("ACCOUNT", account);
-            setResult(RESULT_OK, back_launcher);
+            Account account = new Account(name,link,user,pass);
+
+            db.accountDAO().insertAccount(account);
+
             finish();
         }
     }

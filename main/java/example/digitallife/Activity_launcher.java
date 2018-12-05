@@ -16,11 +16,7 @@ import example.digitallife.DB.DIgitalLife_DB;
 
 public class Activity_launcher extends AppCompatActivity {
 
-    static final int INSERT_ACCOUNT = 1;
-    static final int UPDATE_ACCOUNT = 2;
-
     DIgitalLife_DB db;
-    List<Account> list_accounts;
     LinearLayout ll_list;
 
     @Override
@@ -28,49 +24,33 @@ public class Activity_launcher extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launcher);
 
-        ll_list = findViewById(R.id.ll_accounts);
         db = DIgitalLife_DB.getInstance(this);
 
+        ll_list = findViewById(R.id.ll_accounts);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         reloadScreen();
     }
 
     public void insert_account(View view) {
         Intent start_account = new Intent(this, Activity_account.class);
-        startActivityForResult(start_account, INSERT_ACCOUNT);
+        startActivity(start_account);
     }
 
     public void update_account(View view) {
-        Button b = (Button) view;
         Intent start_account = new Intent(this, Activity_account.class);
-        start_account.putExtra("ACCOUNT", b.getText());
-        startActivityForResult(start_account, UPDATE_ACCOUNT);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode == RESULT_OK) {
-            String name = data.getStringExtra("NAME");
-            String link = data.getStringExtra("LINK");
-            String user = data.getStringExtra("USER");
-            String pass = data.getStringExtra("PASS");
-
-            Account account = new Account(name, link, user, pass);
-
-
-            if (requestCode == INSERT_ACCOUNT) {
-                db.accountDAO().insertAccount(account);
-            }
-            if (requestCode == UPDATE_ACCOUNT) {
-                db.accountDAO().updateAccount(account);
-            }
-            reloadScreen();
-        }
+        start_account.putExtra("ACCOUNT", ((Button) view).getText().toString());
+        startActivity(start_account);
     }
 
     private void reloadScreen() {
-        list_accounts = db.accountDAO().getAllAccounts();
+        List<Account> list_accounts = db.accountDAO().getAllAccounts();
 
         if (list_accounts.isEmpty()) {
+            ll_list.removeAllViews();
             TextView tv = new TextView(this);
             tv.setGravity(Gravity.CENTER);
             tv.setText(R.string.start_add);
