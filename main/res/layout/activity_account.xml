@@ -77,12 +77,22 @@
 
         <EditText
             android:id="@+id/et_pass"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:ems="10"
             android:hint="@string/password"
             android:inputType="textPassword"
             android:singleLine="true" />
+
+        <ImageButton
+            android:id="@+id/ib_eye"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/transparent"
+            android:onClick="showHide_password"
+            android:src="@drawable/ic_eye_open" />
+
     </LinearLayout>
 
     <Button
