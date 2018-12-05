@@ -23,5 +23,5 @@ public interface Account_DAO {
     List<Account> getAllAccounts();
 
     @Query("SELECT * FROM accounts WHERE id IN (:idAccount)")
-    List<Account> findById(String idAccount);
+    Account findById(int idAccount);
 }

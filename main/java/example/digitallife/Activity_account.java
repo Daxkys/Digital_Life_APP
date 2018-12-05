@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import example.digitallife.DB.Account;
@@ -13,6 +14,8 @@ import example.digitallife.DB.DIgitalLife_DB;
 public class Activity_account extends AppCompatActivity {
 
     DIgitalLife_DB db;
+    int id_update;
+    Account mutant;
 
     EditText et_name;
     EditText et_link;
@@ -32,9 +35,18 @@ public class Activity_account extends AppCompatActivity {
         et_pass = findViewById(R.id.et_pass);
 
         Intent i = getIntent();
-        String query = i.getStringExtra("ACCOUNT");
+        id_update = i.getIntExtra("ID_UPDATE", 0);
 
-        et_name.setText(query);
+        if (id_update == 0) {
+            ImageButton b_delete = findViewById(R.id.b_delete);
+            b_delete.setVisibility(View.GONE);
+        } else {
+            mutant = db.accountDAO().findById(id_update);
+            et_name.setText(mutant.getName());
+            et_link.setText(mutant.getLink());
+            et_user.setText(mutant.getUser());
+            et_pass.setText(mutant.getPass());
+        }
     }
 
     @Override
@@ -57,7 +69,7 @@ public class Activity_account extends AppCompatActivity {
         et_pass.setText(state.getString("PASS"));
     }
 
-    public void result_launcher(View view) {
+    public void buttonOK(View view) {
         String name = et_name.getText().toString();
         String link = et_link.getText().toString();
         String user = et_user.getText().toString();
@@ -66,11 +78,22 @@ public class Activity_account extends AppCompatActivity {
         if (name.isEmpty()) {
             Toast.makeText(this, R.string.fail_input_account, Toast.LENGTH_LONG).show();
         } else {
-            Account account = new Account(name,link,user,pass);
-
-            db.accountDAO().insertAccount(account);
-
+            if (id_update == 0) {
+                mutant = new Account(name, link, user, pass);
+                db.accountDAO().insertAccount(mutant);
+            } else {
+                mutant.setName(name);
+                mutant.setLink(link);
+                mutant.setUser(user);
+                mutant.setPass(pass);
+                db.accountDAO().updateAccount(mutant);
+            }
             finish();
         }
+    }
+
+    public void buttonDelete(View view) {
+        db.accountDAO().deleteAccount(mutant);
+        finish();
     }
 }

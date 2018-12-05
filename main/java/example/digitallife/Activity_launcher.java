@@ -16,8 +16,8 @@ import example.digitallife.DB.DIgitalLife_DB;
 
 public class Activity_launcher extends AppCompatActivity {
 
-    DIgitalLife_DB db;
-    LinearLayout ll_list;
+    private DIgitalLife_DB db;
+    private LinearLayout ll_list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +40,9 @@ public class Activity_launcher extends AppCompatActivity {
         startActivity(start_account);
     }
 
-    public void update_account(View view) {
+    private void update_account(int id) {
         Intent start_account = new Intent(this, Activity_account.class);
-        start_account.putExtra("ACCOUNT", ((Button) view).getText().toString());
+        start_account.putExtra("ID_UPDATE", id);
         startActivity(start_account);
     }
 
@@ -55,18 +55,20 @@ public class Activity_launcher extends AppCompatActivity {
             tv.setGravity(Gravity.CENTER);
             tv.setText(R.string.start_add);
             ll_list.addView(tv);
-        }
-        else {
+        } else {
             ll_list.removeAllViews();
             for (Account a : list_accounts) {
+
                 Button b = new Button(this);
+                b.setId(a.getId());
                 b.setText(a.getName());
                 b.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        update_account(v);
+                        update_account(v.getId());
                     }
                 });
+
                 ll_list.addView(b);
             }
         }
