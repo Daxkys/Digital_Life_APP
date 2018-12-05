@@ -9,14 +9,18 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import java.util.List;
+
+import example.digitallife.DB.Account;
+import example.digitallife.DB.DIgitalLife_DB;
 
 public class Activity_launcher extends AppCompatActivity {
 
     static final int INSERT_ACCOUNT = 1;
     static final int UPDATE_ACCOUNT = 2;
 
-    ArrayList<Account> hardcode = new ArrayList<>();
+    DIgitalLife_DB db;
+    List<Account> list_accounts;
     LinearLayout ll_list;
 
     @Override
@@ -25,16 +29,9 @@ public class Activity_launcher extends AppCompatActivity {
         setContentView(R.layout.activity_launcher);
 
         ll_list = findViewById(R.id.ll_accounts);
+        db = DIgitalLife_DB.getInstance(this);
 
-        if (hardcode.isEmpty()) {
-            TextView tv = new TextView(this);
-            tv.setGravity(Gravity.CENTER);
-            tv.setText(R.string.start_add);
-            ll_list.addView(tv);
-
-        } else {
-            reloadLauncher();
-        }
+        reloadScreen();
     }
 
     public void insert_account(View view) {
@@ -49,29 +46,6 @@ public class Activity_launcher extends AppCompatActivity {
         startActivityForResult(start_account, UPDATE_ACCOUNT);
     }
 
-
-    public void addButtonToList(String account) {
-        Button b = new Button(this);
-        b.setText(account);
-        b.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                update_account(v);
-            }
-        });
-        ll_list.addView(b);
-    }
-
-    /**
-     * UPDATE ONLY THE CHANGED BUTTON AND NO ALL THE LINEAR LAYOUT (?)
-     */
-    private void reloadLauncher() {
-        ll_list.removeAllViews();
-        for (Account a : hardcode) {
-            addButtonToList(a.getName());
-        }
-    }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
@@ -82,22 +56,38 @@ public class Activity_launcher extends AppCompatActivity {
 
             Account account = new Account(name, link, user, pass);
 
-            if (requestCode == INSERT_ACCOUNT) {
-                if (hardcode.isEmpty()) {
-                    reloadLauncher();
-                }
-                addButtonToList(name);
 
-                hardcode.add(account); // delete when DB
+            if (requestCode == INSERT_ACCOUNT) {
+                db.accountDAO().insertAccount(account);
             }
             if (requestCode == UPDATE_ACCOUNT) {
-                for (Account a : hardcode) {
-                    if (a.getName().equalsIgnoreCase(data.getStringExtra("ACCOUNT"))) {
-                        hardcode.set(hardcode.indexOf(a), account);
-                        break;
+                db.accountDAO().updateAccount(account);
+            }
+            reloadScreen();
+        }
+    }
+
+    private void reloadScreen() {
+        list_accounts = db.accountDAO().getAllAccounts();
+
+        if (list_accounts.isEmpty()) {
+            TextView tv = new TextView(this);
+            tv.setGravity(Gravity.CENTER);
+            tv.setText(R.string.start_add);
+            ll_list.addView(tv);
+        }
+        else {
+            ll_list.removeAllViews();
+            for (Account a : list_accounts) {
+                Button b = new Button(this);
+                b.setText(a.getName());
+                b.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        update_account(v);
                     }
-                }
-                reloadLauncher();
+                });
+                ll_list.addView(b);
             }
         }
     }
