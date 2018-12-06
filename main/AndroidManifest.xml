@@ -6,7 +6,7 @@
     <application
         android:label="@string/app_name"
         android:icon="@mipmap/ic_digitallife_foreground"
-        android:roundIcon="@mipmap/ic_digitallife_round"
+        android:roundIcon="@mipmap/ic_digital_life_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
