@@ -7,4 +7,6 @@
     <string name="ok">OK</string>
     <string name="fail_input_account">put at least the account name</string>
     <string name="start_add">Start adding your accounts!</string>
+    <string name="delete">delete</string>
+    <string name="show_hide">show or hide password</string>
 </resources>

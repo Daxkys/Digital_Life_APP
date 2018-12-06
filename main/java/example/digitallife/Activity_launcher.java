@@ -12,11 +12,11 @@ import android.widget.TextView;
 import java.util.List;
 
 import example.digitallife.DB.Account;
-import example.digitallife.DB.DIgitalLife_DB;
+import example.digitallife.DB.DigitalLife_DB;
 
 public class Activity_launcher extends AppCompatActivity {
 
-    private DIgitalLife_DB db;
+    private DigitalLife_DB db;
     private LinearLayout ll_list;
 
     @Override
@@ -24,7 +24,7 @@ public class Activity_launcher extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launcher);
 
-        db = DIgitalLife_DB.getInstance(this);
+        db = DigitalLife_DB.getInstance(this);
 
         ll_list = findViewById(R.id.ll_accounts);
     }

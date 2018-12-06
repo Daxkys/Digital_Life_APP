@@ -6,16 +6,16 @@ import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
 @Database(entities = {Account.class}, version = 1)
-public abstract class DIgitalLife_DB extends RoomDatabase {
+public abstract class DigitalLife_DB extends RoomDatabase {
 
-    private static DIgitalLife_DB instance;
+    private static DigitalLife_DB instance;
 
     public abstract Account_DAO accountDAO();
 
-    public static DIgitalLife_DB getInstance(Context context) {
+    public static DigitalLife_DB getInstance(Context context) {
         if (instance == null) {
             instance = Room.databaseBuilder(context.getApplicationContext(),
-                    DIgitalLife_DB.class, "digitalLife_db").allowMainThreadQueries().build();
+                    DigitalLife_DB.class, "digitalLife_db").allowMainThreadQueries().build();
         }
         return instance;
     }

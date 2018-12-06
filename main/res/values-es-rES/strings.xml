@@ -8,4 +8,6 @@
     <string name="link">Enlace</string>
     <string name="fail_input_account">pon como mínimo el nombre de cuenta</string>
     <string name="start_add">Empieza a añadir tus cuentas!</string>
+    <string name="delete">borrar</string>
+    <string name="show_hide">mostrar o ocultar contraseña</string>
 </resources>

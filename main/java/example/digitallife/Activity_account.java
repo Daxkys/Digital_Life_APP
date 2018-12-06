@@ -10,25 +10,25 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import example.digitallife.DB.Account;
-import example.digitallife.DB.DIgitalLife_DB;
+import example.digitallife.DB.DigitalLife_DB;
 
 public class Activity_account extends AppCompatActivity {
 
-    DIgitalLife_DB db;
-    int id_update;
-    Account mutant;
+    private static DigitalLife_DB db;
+    private static int id_update;
+    private static Account mutant;
 
-    EditText et_name;
-    EditText et_link;
-    EditText et_user;
-    EditText et_pass;
+    private EditText et_name;
+    private EditText et_link;
+    private EditText et_user;
+    private EditText et_pass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
 
-        db = DIgitalLife_DB.getInstance(this);
+        db = DigitalLife_DB.getInstance(this);
 
         et_name = findViewById(R.id.et_name);
         et_link = findViewById(R.id.et_link);
@@ -89,12 +89,14 @@ public class Activity_account extends AppCompatActivity {
                 mutant.setPass(pass);
                 db.accountDAO().updateAccount(mutant);
             }
+            DigitalLife_DB.destroyInstance();
             finish();
         }
     }
 
     public void buttonDelete(View view) {
         db.accountDAO().deleteAccount(mutant);
+        DigitalLife_DB.destroyInstance();
         finish();
     }
 
