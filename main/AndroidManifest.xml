@@ -4,12 +4,13 @@
     package="example.digitallife">
 
     <application
-        android:icon="@mipmap/ic_digital_life"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_digital_life"
+        android:icon="@mipmap/ic_digitallife_foreground"
+        android:roundIcon="@mipmap/ic_digitallife_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="GoogleAppIndexingWarning">
+        tools:ignore="GoogleAppIndexingWarning"
+        android:allowBackup="false">
         <activity android:name=".Activity_main"/>
         <activity android:name=".Activity_account"
             android:screenOrientation="portrait"/>
