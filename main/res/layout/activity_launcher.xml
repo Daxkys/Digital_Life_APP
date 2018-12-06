@@ -29,6 +29,7 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="20dp"
         android:onClick="insert_account"
+        android:tint="@android:color/background_light"
         app:backgroundTint="@color/colorPrimary"
         app:srcCompat="@drawable/ic_add" />
 
