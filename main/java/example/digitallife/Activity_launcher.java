@@ -62,6 +62,8 @@ public class Activity_launcher extends AppCompatActivity {
                 Button b = new Button(this);
                 b.setId(a.getId());
                 b.setText(a.getName());
+                //b.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                //b.setTextColor(getResources().getColor(android.R.color.white));
                 b.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

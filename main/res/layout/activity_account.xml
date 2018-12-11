@@ -8,15 +8,31 @@
     tools:context=".Activity_account">
 
 
-    <EditText
-        android:id="@+id/et_name"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/account"
-        android:inputType="textCapWords"
-        android:selectAllOnFocus="true"
-        android:singleLine="true" />
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/et_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="@string/account"
+            android:inputType="textCapWords"
+            android:selectAllOnFocus="true"
+            android:singleLine="true" />
+
+        <ImageButton
+            android:id="@+id/b_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/transparent"
+            android:contentDescription="@string/delete"
+            android:onClick="buttonDelete"
+            android:src="@drawable/ic_delete" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -95,26 +111,17 @@
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/b_ok"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:onClick="buttonOK"
-        android:text="@string/ok" />
-
     <Space
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
 
-
-    <ImageButton
-        android:id="@+id/b_delete"
+    <Button
+        android:id="@+id/b_ok"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@android:color/holo_red_light"
-        android:onClick="buttonDelete"
-        android:src="@drawable/ic_delete"
-        android:contentDescription="@string/delete" />
+        android:background="@color/colorPrimary"
+        android:onClick="buttonOK"
+        android:text="@string/ok"
+        android:textColor="@android:color/white" />
 </LinearLayout>
