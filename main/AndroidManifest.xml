@@ -11,10 +11,10 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         android:allowBackup="false">
-        <activity android:name=".Activity_main"/>
         <activity android:name=".Activity_account"
             android:screenOrientation="portrait"/>
-        <activity android:name=".Activity_launcher"
+        <activity
+            android:name=".Activity_main"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
