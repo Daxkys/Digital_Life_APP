@@ -9,6 +9,9 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import example.digitallife.DB.Account;
 import example.digitallife.DB.DigitalLife_DB;
 
@@ -27,6 +30,10 @@ public class Activity_account extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
+
+        AdView banner = findViewById(R.id.banner_account);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        banner.loadAd(adRequest);
 
         db = DigitalLife_DB.getInstance(this);
 

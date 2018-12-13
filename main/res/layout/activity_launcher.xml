@@ -1,37 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".Activity_launcher">
 
-    <ScrollView
+    <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:fillViewport="true">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-        <LinearLayout
-            android:id="@+id/ll_accounts"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
-            android:gravity="center"
-            android:orientation="vertical">
-        </LinearLayout>
-    </ScrollView>
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:fillViewport="true">
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
+            <LinearLayout
+                android:id="@+id/ll_accounts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp" />
+
+        </ScrollView>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="25dp"
+            android:onClick="insert_account"
+            android:tint="@android:color/white"
+            app:backgroundTint="@color/colorPrimary"
+            app:srcCompat="@drawable/ic_add" />
+
+    </android.support.design.widget.CoordinatorLayout>
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/banner_launcher"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="25dp"
-        android:onClick="insert_account"
-        android:tint="@android:color/white"
-        app:backgroundTint="@color/colorPrimary"
-        app:srcCompat="@drawable/ic_add" />
+        android:layout_gravity="center_horizontal"
+        app:adSize="SMART_BANNER"
+        app:adUnitId="ca-app-pub-9934738138092081/6307905242" />
 
-</android.support.design.widget.CoordinatorLayout>
+</LinearLayout>

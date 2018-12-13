@@ -9,6 +9,10 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+
 import java.util.List;
 
 import example.digitallife.DB.Account;
@@ -23,6 +27,11 @@ public class Activity_launcher extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launcher);
+
+        MobileAds.initialize(this, "ca-app-pub-9934738138092081~2013437011");
+        AdView banner = findViewById(R.id.banner_launcher);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        banner.loadAd(adRequest);
 
         db = DigitalLife_DB.getInstance(this);
 
