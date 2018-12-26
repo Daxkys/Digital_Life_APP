@@ -12,11 +12,15 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 public class Activity_login extends AppCompatActivity {
 
     private SharedPreferences login_preference;
-    private final String FIRST_TIME = "FIRST_TIME";
-    private final String MAIN_KEY = "MAIN_KEY";
+    public final String FIRST_TIME = "FIRST_TIME";
+    public final String MAIN_KEY = "MAIN_KEY";
+    public final String RESET_KEY = "RESET_KEY";
 
     private EditText et_login;
     private ImageButton ib_login;
@@ -27,6 +31,7 @@ public class Activity_login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        // Initialized variables
         login_preference = getPreferences(Context.MODE_PRIVATE);
 
         et_login = findViewById(R.id.et_login);
@@ -34,10 +39,19 @@ public class Activity_login extends AppCompatActivity {
         tv_firstLogin = findViewById(R.id.tv_firstLogin);
         Button b_setLogin = findViewById(R.id.b_setLogin);
 
-        if (login_preference.getBoolean(FIRST_TIME, true)) {
-            ib_login.setVisibility(View.INVISIBLE);
+        // Ad block code
+        AdView banner = findViewById(R.id.banner_login);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        banner.loadAd(adRequest);
+
+        // Set visibility of text and buttons for the first time or reset key
+        if (login_preference.getBoolean(FIRST_TIME, true) || getIntent().getBooleanExtra(RESET_KEY, false)) {
+            ib_login.setVisibility(View.GONE);
             tv_firstLogin.setVisibility(View.VISIBLE);
             b_setLogin.setVisibility(View.VISIBLE);
+        } else {
+            tv_firstLogin.setVisibility(View.INVISIBLE);
+            b_setLogin.setVisibility(View.INVISIBLE);
         }
     }
 
@@ -51,6 +65,7 @@ public class Activity_login extends AppCompatActivity {
             finish();
         } else {
             Toast.makeText(this, R.string.main_key_error, Toast.LENGTH_SHORT).show();
+            et_login.setText("");
         }
     }
 
