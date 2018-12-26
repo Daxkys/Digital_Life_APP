@@ -14,7 +14,9 @@
     <string name="main_key_error">Llave principal incorrecta!</string>
     <string name="main_key_after_set">Acabas de asignar la llave principal! Ahora puedes pulsar el nuevo botón para continuar o asignar otra nueva.</string>
     <string name="main_key_must_length">La llave principal debe tener 4 caracteres como mínimo</string>
-    <string name="main_key_before">¿Es tu primera vez verdad? Establece tu llave principal para iniciar sesión en Digital Life y haz click para guardar.</string>
+    <string name="main_key_before">Establece tu llave principal para iniciar sesión en Digital Life y haz click para guardar.</string>
     <string name="enter">Entrar</string>
     <string name="save">Guardar</string>
+    <string name="main_key_change">Cambiar llave principal…</string>
+    <string name="main_key">llave principal</string>
 </resources>

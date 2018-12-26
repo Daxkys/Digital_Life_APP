@@ -8,4 +8,22 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="dl_Button" parent="Widget.AppCompat.Button">
+        <item name="android:background">@drawable/dl_button</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="dl_ImageButton" parent="Widget.AppCompat.ImageButton">
+        <item name="android:background">@drawable/dl_button</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:layout_margin">5dp</item>
+    </style>
+
 </resources>

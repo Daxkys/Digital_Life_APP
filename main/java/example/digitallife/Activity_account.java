@@ -110,10 +110,10 @@ public class Activity_account extends AppCompatActivity {
     public void showHide_password(View view) {
         if (et_pass.getInputType() == InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD) {
             et_pass.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-            ((ImageButton) view).setImageResource(R.drawable.ic_eye_open);
+            ((ImageButton) view).setImageResource(R.drawable.ic_show);
         } else {
             et_pass.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
-            ((ImageButton) view).setImageResource(R.drawable.ic_eye_closed);
+            ((ImageButton) view).setImageResource(R.drawable.ic_hide);
         }
 
         et_pass.setSelection(et_pass.length());
