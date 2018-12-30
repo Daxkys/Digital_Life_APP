@@ -58,7 +58,7 @@ public class Activity_main extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_change_key:
                 Intent upload_login = new Intent(this, Activity_login.class);
-                upload_login.putExtra("RESET_KEY", true);
+                upload_login.putExtra(Activity_login.RESET_KEY, true);
                 startActivity(upload_login);
                 finish();
                 return true;
@@ -69,14 +69,15 @@ public class Activity_main extends AppCompatActivity {
     }
 
     public void insert_account(View view) {
-        Intent start_account = new Intent(this, Activity_account.class);
+        Intent start_account = new Intent(this, Activity_account_form.class);
         startActivity(start_account);
     }
 
     private void update_account(int id) {
-        Intent start_account = new Intent(this, Activity_account.class);
-        start_account.putExtra("ID_UPDATE", id);
-        startActivity(start_account);
+        Intent data = new Intent(this, Activity_account_show.class);
+        Account account = db.accountDAO().findById(id);
+        data.putExtra(Activity_account_show.EXTRA_ID, account.getId());
+        startActivity(data);
     }
 
     private void loadScreen() {

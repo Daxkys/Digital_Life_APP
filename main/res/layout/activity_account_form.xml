@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Activity_account">
+    tools:context=".Activity_account_form">
 
     <LinearLayout
         android:id="@+id/ll_form"
@@ -28,21 +28,8 @@
                 android:ems="10"
                 android:hint="@string/account"
                 android:inputType="textCapWords"
-                android:selectAllOnFocus="true"
-                android:singleLine="true"
-                android:importantForAutofill="no" />
+                android:singleLine="true" />
 
-            <ImageButton
-                android:id="@+id/b_delete"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
-                android:background="@null"
-                android:contentDescription="@string/b_delete"
-                android:onClick="buttonDelete"
-                android:src="@drawable/ic_delete" />
         </LinearLayout>
 
         <LinearLayout
@@ -66,7 +53,7 @@
                 android:ems="10"
                 android:hint="@string/link"
                 android:inputType="textWebEditText"
-                android:importantForAutofill="no" />
+                android:singleLine="true" />
         </LinearLayout>
 
         <LinearLayout
@@ -89,8 +76,7 @@
                 android:ems="10"
                 android:hint="@string/username"
                 android:inputType="text"
-                android:singleLine="true"
-                android:importantForAutofill="no" />
+                android:singleLine="true" />
         </LinearLayout>
 
         <LinearLayout
@@ -111,50 +97,42 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:ems="10"
                 android:hint="@string/password"
                 android:inputType="textPassword"
-                android:singleLine="true"
-                android:importantForAutofill="no" />
+                android:singleLine="true" />
 
             <ImageButton
                 android:id="@+id/ib_eye"
+                style="@style/dl_ImageButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@null"
                 android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
                 android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
                 android:contentDescription="@string/show_hide"
                 android:onClick="showHide_password"
-                android:src="@drawable/ic_eye_open" />
+                android:src="@drawable/ic_show" />
 
         </LinearLayout>
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
         <Button
             android:id="@+id/b_ok"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:background="@color/colorPrimary"
-            android:onClick="buttonOK"
-            android:text="@string/ok"
-            android:textColor="@android:color/white" />
-
-        <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/banner_account"
+            style="@style/dl_Button"
             android:layout_width="wrap_content"
-            android:layout_height="50dip"
-            android:layout_gravity="center_horizontal"
-            ads:adSize="BANNER"
-            ads:adUnitId="ca-app-pub-9934738138092081/5199671858" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginTop="20dp"
+            android:onClick="buttonOK"
+            android:text="@string/save" />
+
     </LinearLayout>
+
+    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/banner_account_form"
+        android:layout_width="wrap_content"
+        android:layout_height="50dip"
+        android:layout_gravity="center_horizontal"
+        ads:adSize="BANNER"
+        ads:adUnitId="ca-app-pub-9934738138092081/5199671858" />
 
 </LinearLayout>

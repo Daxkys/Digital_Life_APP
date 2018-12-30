@@ -9,11 +9,9 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_digital_life_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        tools:ignore="GoogleAppIndexingWarning">
-        
+        android:theme="@style/AppTheme">
         <activity
-            android:name=".Activity_account"
+            android:name=".Activity_account_form"
             android:screenOrientation="portrait" />
 
         <activity
@@ -25,15 +23,30 @@
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".Activity_account_show"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".Activity_main"
+            tools:targetApi="jelly_bean">
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activity_main" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <data android:scheme="http" />
+                <category android:name="android.intent.category.BROWSABLE" />
             </intent-filter>
         </activity>
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-9934738138092081~2013437011" />
-
     </application>
 
 </manifest>

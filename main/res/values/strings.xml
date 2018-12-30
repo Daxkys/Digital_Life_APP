@@ -4,11 +4,9 @@
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="link">Link</string>
-    <string name="ok">OK</string>
     <string name="fail_input_account">Put at least the account name</string>
     <string name="start_add">Start to log your digital accounts!</string>
     <string name="show_hide">show or hide password</string>
-    <string name="b_delete">delete button</string>
     <string name="main_key_set">Main key established!</string>
     <string name="main_key_error">Wrong main key!</string>
     <string name="main_key_must_length">The main key must be 4 characters length</string>
@@ -18,4 +16,10 @@
     <string name="save">Save</string>
     <string name="main_key_change">Change main key…</string>
     <string name="main_key">main key</string>
+    <string name="delete">Delete…</string>
+    <string name="edit">Edit</string>
+    <string name="b_browser">Open in browser button</string>
+    <string name="b_hide_show">Hide or show password button</string>
+    <string name="b_copy_user">button to copy username to clipboard</string>
+    <string name="b_copy_pass">Button to copy password to clipboard</string>
 </resources>

@@ -15,7 +15,12 @@ import com.google.android.gms.ads.AdView;
 import example.digitallife.DB.Account;
 import example.digitallife.DB.DigitalLife_DB;
 
-public class Activity_account extends AppCompatActivity {
+public class Activity_account_form extends AppCompatActivity {
+
+    private static final String NAME = "NAME";
+    private static final String LINK = "LINK";
+    private static final String USER = "USER";
+    private static final String PASS = "PASS";
 
     private static DigitalLife_DB db;
     private static int id_update;
@@ -29,9 +34,9 @@ public class Activity_account extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_account);
+        setContentView(R.layout.activity_account_form);
 
-        AdView banner = findViewById(R.id.banner_account);
+        AdView banner = findViewById(R.id.banner_account_form);
         AdRequest adRequest = new AdRequest.Builder().build();
         banner.loadAd(adRequest);
 
@@ -43,12 +48,9 @@ public class Activity_account extends AppCompatActivity {
         et_pass = findViewById(R.id.et_pass);
 
         Intent i = getIntent();
-        id_update = i.getIntExtra("ID_UPDATE", 0);
+        id_update = i.getIntExtra(Activity_account_show.ID_UPDATE, 0);
 
-        if (id_update == 0) {
-            ImageButton b_delete = findViewById(R.id.b_delete);
-            b_delete.setVisibility(View.GONE);
-        } else {
+        if (id_update != 0) {
             mutant = db.accountDAO().findById(id_update);
             et_name.setText(mutant.getName());
             et_link.setText(mutant.getLink());
@@ -59,10 +61,10 @@ public class Activity_account extends AppCompatActivity {
 
     @Override
     public void onSaveInstanceState (Bundle state) {
-        state.putString("NAME",et_name.getText().toString());
-        state.putString("LINK",et_link.getText().toString());
-        state.putString("USER",et_user.getText().toString());
-        state.putString("PASS",et_pass.getText().toString());
+        state.putString(NAME, et_name.getText().toString());
+        state.putString(LINK, et_link.getText().toString());
+        state.putString(USER, et_user.getText().toString());
+        state.putString(PASS, et_pass.getText().toString());
 
         super.onSaveInstanceState(state);
     }
@@ -71,10 +73,10 @@ public class Activity_account extends AppCompatActivity {
     public void onRestoreInstanceState (Bundle state) {
         super.onRestoreInstanceState(state);
 
-        et_name.setText(state.getString("NAME"));
-        et_link.setText(state.getString("LINK"));
-        et_user.setText(state.getString("USER"));
-        et_pass.setText(state.getString("PASS"));
+        et_name.setText(state.getString(NAME));
+        et_link.setText(state.getString(LINK));
+        et_user.setText(state.getString(USER));
+        et_pass.setText(state.getString(PASS));
     }
 
     public void buttonOK(View view) {
@@ -95,16 +97,11 @@ public class Activity_account extends AppCompatActivity {
                 mutant.setUser(user);
                 mutant.setPass(pass);
                 db.accountDAO().updateAccount(mutant);
+                setResult(RESULT_OK);
             }
             DigitalLife_DB.destroyInstance();
             finish();
         }
-    }
-
-    public void buttonDelete(View view) {
-        db.accountDAO().deleteAccount(mutant);
-        DigitalLife_DB.destroyInstance();
-        finish();
     }
 
     public void showHide_password(View view) {

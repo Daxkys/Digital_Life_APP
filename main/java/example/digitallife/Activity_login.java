@@ -18,9 +18,9 @@ import com.google.android.gms.ads.AdView;
 public class Activity_login extends AppCompatActivity {
 
     private SharedPreferences login_preference;
-    public final String FIRST_TIME = "FIRST_TIME";
-    public final String MAIN_KEY = "MAIN_KEY";
-    public final String RESET_KEY = "RESET_KEY";
+    private static final String FIRST_TIME = "FIRST_TIME";
+    private static final String MAIN_KEY = "MAIN_KEY";
+    public static final String RESET_KEY = "RESET_KEY";
 
     private EditText et_login;
     private ImageButton ib_login;
