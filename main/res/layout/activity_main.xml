@@ -48,6 +48,6 @@
         android:layout_height="50dip"
         android:layout_gravity="center_horizontal"
         ads:adSize="BANNER"
-        ads:adUnitId="ca-app-pub-9934738138092081/6307905242" />
+        ads:adUnitId="ca-app-pub-3940256099942544/6300978111" />
 
 </LinearLayout>
