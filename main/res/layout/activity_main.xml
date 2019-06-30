@@ -37,7 +37,7 @@
             android:layout_margin="25dp"
             android:onClick="insert_account"
             android:tint="@android:color/white"
-            app:backgroundTint="@color/colorPrimary"
+            app:backgroundTint="@color/primary"
             app:srcCompat="@drawable/ic_add" />
 
     </android.support.design.widget.CoordinatorLayout>
