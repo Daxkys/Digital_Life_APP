@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
 
 public class Activity_login extends AppCompatActivity {
 
@@ -21,6 +22,8 @@ public class Activity_login extends AppCompatActivity {
     private static final String FIRST_TIME = "FIRST_TIME";
     private static final String MAIN_KEY = "MAIN_KEY";
     public static final String RESET_KEY = "RESET_KEY";
+
+    InterstitialAd interstitial_login;
 
     private EditText et_login;
     private ImageButton ib_login;
@@ -39,11 +42,6 @@ public class Activity_login extends AppCompatActivity {
         tv_firstLogin = findViewById(R.id.tv_firstLogin);
         Button b_setLogin = findViewById(R.id.b_setLogin);
 
-        // Ad block code
-        AdView banner = findViewById(R.id.banner_login);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        banner.loadAd(adRequest);
-
         // Set visibility of text and buttons for the first time or reset key
         if (login_preference.getBoolean(FIRST_TIME, true) || getIntent().getBooleanExtra(RESET_KEY, false)) {
             ib_login.setVisibility(View.GONE);
@@ -53,6 +51,15 @@ public class Activity_login extends AppCompatActivity {
             tv_firstLogin.setVisibility(View.INVISIBLE);
             b_setLogin.setVisibility(View.INVISIBLE);
         }
+
+        // Banner and interstitial ads load
+        AdView banner = findViewById(R.id.banner_login);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        banner.loadAd(adRequest);
+
+        interstitial_login = new InterstitialAd(this);
+        interstitial_login.setAdUnitId("ca-app-pub-9934738138092081/2614553925");
+        interstitial_login.loadAd(new AdRequest.Builder().build());
     }
 
     public void login(View view) {
@@ -63,6 +70,10 @@ public class Activity_login extends AppCompatActivity {
             Intent toMain = new Intent(this, Activity_main.class);
             startActivity(toMain);
             finish();
+
+            if (interstitial_login.isLoaded()) {
+                interstitial_login.show();
+            }
         } else {
             Toast.makeText(this, R.string.main_key_error, Toast.LENGTH_SHORT).show();
             et_login.setText("");
