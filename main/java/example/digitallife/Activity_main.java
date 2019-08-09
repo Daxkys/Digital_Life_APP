@@ -1,6 +1,7 @@
 package example.digitallife;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
@@ -9,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.google.android.gms.ads.AdRequest;
@@ -44,12 +46,51 @@ public class Activity_main extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        loadScreen();
+        List<Account> list_accounts = db.accountDAO().getAllAccounts();
+
+        if (list_accounts.isEmpty()) {
+            ll_list.removeAllViews();
+            TextView tv = new TextView(this);
+            tv.setGravity(Gravity.CENTER);
+            tv.setText(R.string.start_add);
+            ll_list.addView(tv);
+        } else {
+            ll_list.removeAllViews();
+            for (Account a : list_accounts) {
+
+                Button b = new Button(this);
+                b.setId(a.getId());
+                b.setText(a.getName());
+                b.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        update_account(v.getId());
+                    }
+                });
+
+                ll_list.addView(b);
+            }
+        }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
+
+        SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                query_search(newText);
+                return false;
+            }
+        });
+
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -80,24 +121,17 @@ public class Activity_main extends AppCompatActivity {
         startActivity(data);
     }
 
-    private void loadScreen() {
-        List<Account> list_accounts = db.accountDAO().getAllAccounts();
+    private void query_search(String name) {
+        ll_list.removeAllViews();
+        List<Account> list_accounts = db.accountDAO().selectLike_byName("%".concat(name).concat("%"));
 
-        if (list_accounts.isEmpty()) {
-            ll_list.removeAllViews();
-            TextView tv = new TextView(this);
-            tv.setGravity(Gravity.CENTER);
-            tv.setText(R.string.start_add);
-            ll_list.addView(tv);
-        } else {
-            ll_list.removeAllViews();
+        if (list_accounts.size() >= 1) {
+
             for (Account a : list_accounts) {
 
                 Button b = new Button(this);
                 b.setId(a.getId());
                 b.setText(a.getName());
-                //b.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-                //b.setTextColor(getResources().getColor(android.R.color.white));
                 b.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -107,6 +141,13 @@ public class Activity_main extends AppCompatActivity {
 
                 ll_list.addView(b);
             }
+        } else {
+            TextView tv_fail_search = new TextView(this);
+            tv_fail_search.setGravity(Gravity.CENTER);
+            tv_fail_search.setText(R.string.search_fail);
+            tv_fail_search.setTextColor(Color.RED);
+            ll_list.addView(tv_fail_search);
         }
     }
+
 }

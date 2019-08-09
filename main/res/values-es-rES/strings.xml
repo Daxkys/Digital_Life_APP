@@ -23,4 +23,5 @@
     <string name="b_hide_show">Botón para mostrar u ocultar la contraseña</string>
     <string name="b_copy_user">Botón para copiar el nombre de usuario al portapapeles</string>
     <string name="b_copy_pass">Botón para copiar la contraseña al portapapeles</string>
+    <string name="search_fail">Nada que mostrar… 😖</string>
 </resources>

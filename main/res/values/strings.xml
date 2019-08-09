@@ -22,4 +22,5 @@
     <string name="b_hide_show">Hide or show password button</string>
     <string name="b_copy_user">button to copy username to clipboard</string>
     <string name="b_copy_pass">Button to copy password to clipboard</string>
+    <string name="search_fail">Nothing to show… 😖</string>
 </resources>

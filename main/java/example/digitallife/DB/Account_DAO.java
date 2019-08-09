@@ -24,4 +24,7 @@ public interface Account_DAO {
 
     @Query("SELECT * FROM accounts WHERE id IN (:idAccount)")
     Account findById(int idAccount);
+
+    @Query("SELECT * FROM accounts WHERE name LIKE (:name)")
+    List<Account> selectLike_byName(String name);
 }
