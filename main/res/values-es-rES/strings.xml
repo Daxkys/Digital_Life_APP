@@ -10,7 +10,7 @@
     <string name="show_hide">mostrar o ocultar contraseña</string>
     <string name="main_key_set">Llave principal establecida!</string>
     <string name="main_key_error">Llave principal incorrecta!</string>
-    <string name="main_key_after_set">Acabas de asignar la llave principal! Ahora puedes pulsar el nuevo botón para continuar o asignar otra nueva.</string>
+    <string name="main_key_after_set">Acabas de asignar la llave principal! Ahora puedes pulsar el botón de logado para continuar o asignar una nueva nueva.</string>
     <string name="main_key_must_length">La llave principal debe tener 4 caracteres como mínimo</string>
     <string name="main_key_before">Establece tu llave principal para iniciar sesión en Digital Life y haz click para guardar.</string>
     <string name="enter">Entrar</string>
@@ -24,4 +24,7 @@
     <string name="b_copy_user">Botón para copiar el nombre de usuario al portapapeles</string>
     <string name="b_copy_pass">Botón para copiar la contraseña al portapapeles</string>
     <string name="search_fail">Nada que mostrar… 😖</string>
+    <string name="biometric_verification">Verificación biometrica</string>
+    <string name="biometric_desc">Usa el sistema de verificación biométrica para autentificarte</string>
+    <string name="gen_cancel">Cancelar</string>
 </resources>

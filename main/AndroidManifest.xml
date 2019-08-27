@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="example.digitallife">
 
+    <uses-permission android:name="android.permission.USE_BIOMETRIC" />
+
     <application
         android:allowBackup="false"
         android:icon="@mipmap/ic_digitallife_foreground"
@@ -35,7 +37,7 @@
             android:name=".Activity_account_show"
             android:parentActivityName=".Activity_main"
             android:screenOrientation="portrait"
-            tools:targetApi="jelly_bean">
+            tools:targetApi="JELLY_BEAN">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
@@ -44,9 +46,7 @@
 
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
-
                 <data android:scheme="http" />
-
                 <category android:name="android.intent.category.BROWSABLE" />
             </intent-filter>
         </activity>

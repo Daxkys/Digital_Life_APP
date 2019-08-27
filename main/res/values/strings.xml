@@ -9,8 +9,8 @@
     <string name="show_hide">show or hide password</string>
     <string name="main_key_set">Main key established!</string>
     <string name="main_key_error">Wrong main key!</string>
-    <string name="main_key_must_length">The main key must be 4 characters length</string>
-    <string name="main_key_after_set">You just set the main key! Now you can press the new button to continue or set another password.</string>
+    <string name="main_key_must_length">The main key must be 4 characters length at least</string>
+    <string name="main_key_after_set">You just set the main key! Now you can press the login button to continue or set a new password.</string>
     <string name="main_key_before">Set your main key to login in Digital Life and click in the button to save it.</string>
     <string name="enter">Enter</string>
     <string name="save">Save</string>
@@ -23,4 +23,7 @@
     <string name="b_copy_user">button to copy username to clipboard</string>
     <string name="b_copy_pass">Button to copy password to clipboard</string>
     <string name="search_fail">Nothing to show… 😖</string>
+    <string name="biometric_verification">Biometric verification</string>
+    <string name="biometric_desc">Use the biometric verification system to authenticate</string>
+    <string name="gen_cancel">Cancel</string>
 </resources>
