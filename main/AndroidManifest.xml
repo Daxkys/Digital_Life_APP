@@ -6,11 +6,11 @@
     <uses-permission android:name="android.permission.USE_BIOMETRIC" />
 
     <application
-        android:allowBackup="false"
-        android:icon="@mipmap/ic_digitallife_foreground"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_digital_life_round"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:allowBackup="false"
         android:theme="@style/AppTheme">
 
         <activity
@@ -23,20 +23,13 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".Activity_login"
-            android:screenOrientation="portrait" />
+        <activity android:name=".Activity_login" />
 
-        <activity
-            android:name=".Activity_main"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Activity_account_form"
-            android:screenOrientation="portrait" />
+        <activity android:name=".Activity_main" />
+        <activity android:name=".Activity_account_form" />
         <activity
             android:name=".Activity_account_show"
             android:parentActivityName=".Activity_main"
-            android:screenOrientation="portrait"
             tools:targetApi="JELLY_BEAN">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
