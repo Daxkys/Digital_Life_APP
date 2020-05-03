@@ -7,47 +7,59 @@
     android:orientation="vertical"
     tools:context=".Activity_main">
 
-    <android.support.design.widget.CoordinatorLayout
+    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/banner_main"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        ads:adSize="SMART_BANNER"
+        ads:adUnitId="ca-app-pub-9934738138092081/6307905242" />
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
 
-        <ScrollView
+        <!--
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"/>
+        -->
+
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_marginBottom="64dp"
             android:fillViewport="true">
 
             <LinearLayout
                 android:id="@+id/ll_accounts"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:gravity="center"
-                android:orientation="vertical"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp" />
+                android:orientation="vertical">
 
-        </ScrollView>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
 
-        <android.support.design.widget.FloatingActionButton
+        <com.google.android.material.bottomappbar.BottomAppBar
+            android:id="@+id/bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            app:fabAlignmentMode="center"
+            app:hideOnScroll="true" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="25dp"
             android:onClick="insert_account"
-            android:tint="@android:color/white"
+            app:srcCompat="@drawable/ic_add"
             app:backgroundTint="@color/primary"
-            app:srcCompat="@drawable/ic_add" />
+            app:layout_anchor="@id/bar" />
 
-    </android.support.design.widget.CoordinatorLayout>
-
-    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/banner_main"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        ads:adSize="SMART_BANNER"
-        ads:adUnitId="ca-app-pub-9934738138092081/6307905242" />
-
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </LinearLayout>

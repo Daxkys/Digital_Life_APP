@@ -1,134 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".Activity_account_show">
 
     <LinearLayout
-        android:id="@+id/ll_account"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tv_account"
-            android:layout_width="0dp"
+        <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/banner_account_show"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_weight="1"
+            ads:adSize="SMART_BANNER"
+            ads:adUnitId="ca-app-pub-9934738138092081/7339226369" />
+
+        <LinearLayout
+            android:id="@+id/ll_account"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_account"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:gravity="center"
+                android:text="@string/account"
+                android:textAllCaps="true"
+                android:textSize="32sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:gravity="center"
+                android:text="@string/username"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/tv_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:gravity="center"
+                android:text="@string/password"
+                android:textSize="24sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_user"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
             android:gravity="center"
-            android:text="@string/account"
-            android:textAllCaps="true"
-            android:textSize="50sp"
-            android:textStyle="bold"
-            tools:text="@string/account" />
+            android:orientation="horizontal">
 
-        <ImageButton
-            android:id="@+id/ib_open_link"
-            style="@style/dl_ImageButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_browser"
-            android:contentDescription="@string/b_browser" />
+            <Button
+                android:id="@+id/copy_user"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:contentDescription="@string/b_copy_user"
+                android:text="@string/username"
+                app:icon="@drawable/ic_copy" />
+
+            <Button
+                android:id="@+id/copy_pass"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:contentDescription="@string/b_copy_pass"
+                android:text="@string/password"
+                app:icon="@drawable/ic_copy" />
+
+        </LinearLayout>
+
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/ll_user"
-        android:layout_width="0dp"
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/bar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ll_account">
+        android:layout_gravity="bottom"
+        app:fabAlignmentMode="center"
+        app:fabAnimationMode="slide"
+        app:hideOnScroll="true" />
 
-        <TextView
-            android:id="@+id/tv_username"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/username"
-            android:textSize="25sp" />
-
-        <ImageButton
-            android:id="@+id/ib_copy_user"
-            style="@style/dl_ImageButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_copy"
-            android:contentDescription="@string/b_copy_user" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/ll_pass"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ll_user">
-
-        <TextView
-            android:id="@+id/tv_password"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/password"
-            android:textAllCaps="false"
-            android:textSize="25sp" />
-
-        <ImageButton
-            android:id="@+id/ib_eye"
-            style="@style/dl_ImageButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="showHide_password"
-            app:srcCompat="@drawable/ic_show"
-            android:contentDescription="@string/b_hide_show" />
-
-        <ImageButton
-            android:id="@+id/ib_copy_pass"
-            style="@style/dl_ImageButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_copy"
-            android:contentDescription="@string/b_copy_pass" />
-
-    </LinearLayout>
-
-    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/banner_account_show"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_account_show"
+        android:onClick="showHide_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal|bottom"
-        ads:adSize="SMART_BANNER"
-        ads:layout_constraintBottom_toBottomOf="parent"
-        ads:layout_constraintEnd_toEndOf="parent"
-        ads:layout_constraintStart_toStartOf="parent"
-        ads:adUnitId="ca-app-pub-9934738138092081/7339226369" />
+        app:layout_anchor="@id/bar"
+        app:backgroundTint="@color/primary"
+        app:srcCompat="@drawable/ic_show" />
 
-</android.support.constraint.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

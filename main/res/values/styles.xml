@@ -1,25 +1,57 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+    <!-- Base application theme -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <item name="colorPrimary">@color/primary</item>
-        <item name="colorPrimaryDark">@color/primary_dark</item>
-        <item name="colorAccent">@color/accent</item>
+        <item name="colorOnPrimary">@color/onPrimary</item>
+        <item name="colorPrimaryVariant">@color/primaryVariant</item>
+        <!--
+        <item name="colorSecondary">@color/secondary</item>
+        <item name="colorOnSecondary">@color/onSecondary</item>
+        <item name="colorSecondaryVariant">@color/secondaryVariant</item>
+        -->
+
+        <item name="android:colorBackground">@color/background</item>
+        <item name="colorOnBackground">@color/onBackground</item>
+
+        <item name="colorSurface">@color/surface</item>
+        <item name="colorOnSurface">@color/onSurface</item>
+
+        <item name="colorError">@color/error</item>
+        <item name="colorOnError">@color/onError</item>
     </style>
 
-    <style name="dl_Button" parent="Widget.AppCompat.Button">
-        <item name="android:background">@drawable/dl_button</item>
-        <item name="android:textColor">@android:color/white</item>
+    <!-- Dark application theme
+    <style name="DarkTheme" parent="Theme.MaterialComponents.DayNight">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorOnPrimary">@color/onPrimary</item>
+        <item name="colorPrimaryVariant">@color/primaryVariant</item>
+
+        <item name="colorSecondary">@color/secondary</item>
+        <item name="colorOnSecondary">@color/onSecondary</item>
+        <item name="colorSecondaryVariant">@color/secondaryVariant</item>
+
+        <item name="android:colorBackground">@color/background</item>
+        <item name="colorOnBackground">@color/onBackground</item>
+
+        <item name="colorSurface">@color/surface</item>
+        <item name="colorOnSurface">@color/onSurface</item>
+
+        <item name="colorError">@color/error</item>
+        <item name="colorOnError">@color/onError</item>
+    </style>
+    -->
+
+    <!-- Style of border buttons -->
+    <style name="dl_Button" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/primary</item>
+        <item name="strokeColor">@color/primaryVariant</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="android:layout_margin">4dp</item>
     </style>
 
-    <style name="dl_ImageButton" parent="Widget.AppCompat.ImageButton">
-        <item name="android:background">@drawable/dl_button</item>
-        <item name="android:padding">10dp</item>
-        <item name="android:layout_margin">5dp</item>
-    </style>
-
-    <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
+    <!-- Splash screen -->
+    <style name="SplashTheme" parent="Theme.MaterialComponents.NoActionBar">
         <item name="android:windowBackground">@drawable/splash_screen</item>
     </style>
 
