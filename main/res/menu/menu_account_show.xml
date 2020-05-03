@@ -13,4 +13,10 @@
         android:icon="@drawable/ic_delete"
         android:title="@string/delete"
         app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_go_web"
+        android:title="@string/b_browser"
+        android:icon="@drawable/ic_launch"
+        app:showAsAction="ifRoom" />
 </menu>
