@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Digital Life</string>
     <string name="password">Contraseña</string>
     <string name="account">Cuenta</string>
     <string name="username">Usuario</string>
@@ -10,16 +9,16 @@
     <string name="show_hide">mostrar o ocultar contraseña</string>
     <string name="main_key_set">Llave principal establecida!</string>
     <string name="main_key_error">Llave principal incorrecta!</string>
-    <string name="main_key_after_set">Acabas de asignar la llave principal! Ahora puedes pulsar el botón de logado para continuar o asignar una nueva nueva.</string>
+    <string name="main_key_after_set">Acabas de asignar la llave principal! Ya puedes empezar.</string>
     <string name="main_key_must_length">La llave principal debe tener 4 caracteres como mínimo</string>
-    <string name="main_key_before">Establece tu llave principal para iniciar sesión en Digital Life y haz click para guardar.</string>
+    <string name="main_key_before">Establece tu llave principal para iniciar sesión en DiPass y pulsa el botón para guardar.</string>
     <string name="enter">Entrar</string>
     <string name="save">Guardar</string>
     <string name="main_key_change">Cambiar llave principal…</string>
     <string name="main_key">llave principal</string>
     <string name="delete">Borrar…</string>
     <string name="edit">Editar</string>
-    <string name="b_browser">Botón para abrir en navegador</string>
+    <string name="b_browser">Abrir en el navegador</string>
     <string name="b_hide_show">Botón para mostrar u ocultar la contraseña</string>
     <string name="b_copy_user">Botón para copiar el nombre de usuario al portapapeles</string>
     <string name="b_copy_pass">Botón para copiar la contraseña al portapapeles</string>
@@ -27,4 +26,7 @@
     <string name="biometric_verification">Verificación biometrica</string>
     <string name="biometric_desc">Usa el sistema de verificación biométrica para autentificarte</string>
     <string name="gen_cancel">Cancelar</string>
+    <string name="copy_user">Usuario copiado al portapapeles</string>
+    <string name="copy_password">Contraseña copiada al portapapeles</string>
+    <string name="app_name">DiPass</string>
 </resources>

@@ -6,17 +6,19 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.text.method.PasswordTransformationMethod;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import example.digitallife.DB.Account;
 import example.digitallife.DB.DigitalLife_DB;
@@ -30,12 +32,13 @@ public class Activity_account_show extends AppCompatActivity {
     private DigitalLife_DB db;
     private Account mutant;
 
+    private FloatingActionButton fab;
     private TextView tv_account;
     private TextView tv_username;
     private TextView tv_password;
-    private ImageButton ib_open_link;
-    private ImageButton ib_copy_user;
-    private ImageButton ib_copy_pass;
+    private Button ib_copy_user;
+    private Button ib_copy_pass;
+    private Button go_web;
 
     private boolean show_password = true;
 
@@ -50,12 +53,12 @@ public class Activity_account_show extends AppCompatActivity {
 
         db = DigitalLife_DB.getInstance(this);
 
+        fab = findViewById(R.id.fab_account_show);
         tv_account = findViewById(R.id.tv_account);
         tv_username = findViewById(R.id.tv_username);
         tv_password = findViewById(R.id.tv_password);
-        ib_open_link = findViewById(R.id.ib_open_link);
-        ib_copy_user = findViewById(R.id.ib_copy_user);
-        ib_copy_pass = findViewById(R.id.ib_copy_pass);
+        ib_copy_user = findViewById(R.id.copy_user);
+        ib_copy_pass = findViewById(R.id.copy_pass);
 
         loadViews();
         tv_password.setTransformationMethod(new PasswordTransformationMethod());
@@ -68,25 +71,22 @@ public class Activity_account_show extends AppCompatActivity {
         tv_account.setText(mutant.getName());
         tv_username.setText(mutant.getUser());
         tv_password.setText(mutant.getPass());
-        ib_open_link.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openWebPage(mutant.getLink());
-            }
-        });
+
         if (clipboardManager != null) {
             ib_copy_user.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {
-                    clipboardManager.setPrimaryClip(ClipData.newPlainText("user copied", tv_username.getText()));
-                    Toast.makeText(Activity_account_show.this, "user copied", Toast.LENGTH_SHORT).show();
+                public void onClick(View view) {
+                    clipboardManager.setPrimaryClip(ClipData.newPlainText("USERNAME", tv_username.getText()));
+                    Toast.makeText(Activity_account_show.this, R.string.copy_user, Toast.LENGTH_SHORT).show();
+                    //Snackbar.make(fab, R.string.copy_user, Snackbar.LENGTH_SHORT).show();
                 }
             });
             ib_copy_pass.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {
-                    clipboardManager.setPrimaryClip(ClipData.newPlainText("password copied", tv_password.getText()));
-                    Toast.makeText(Activity_account_show.this, "password copied", Toast.LENGTH_SHORT).show();
+                public void onClick(View view) {
+                    clipboardManager.setPrimaryClip(ClipData.newPlainText("PASSWORD", tv_password.getText()));
+                    Toast.makeText(Activity_account_show.this, R.string.copy_password, Toast.LENGTH_SHORT).show();
+                    //Snackbar.make(fab, R.string.copy_password, Snackbar.LENGTH_SHORT).show();
                 }
             });
         }
@@ -94,6 +94,7 @@ public class Activity_account_show extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == CODE_EDIT) {
             if (resultCode == RESULT_OK) {
                 loadViews();
@@ -122,6 +123,10 @@ public class Activity_account_show extends AppCompatActivity {
                 finish();
                 return true;
 
+            case R.id.action_go_web:
+                openWebPage(mutant.getLink());
+                return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -140,10 +145,10 @@ public class Activity_account_show extends AppCompatActivity {
     public void showHide_password(View view) {
         if (show_password) {
             tv_password.setTransformationMethod(null);
-            ((ImageButton) view).setImageResource(R.drawable.ic_hide);
+            fab.setImageResource(R.drawable.ic_hide);
         } else {
             tv_password.setTransformationMethod(new PasswordTransformationMethod());
-            ((ImageButton) view).setImageResource(R.drawable.ic_show);
+            fab.setImageResource(R.drawable.ic_show);
 
         }
         show_password = !show_password;

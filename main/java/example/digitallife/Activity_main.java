@@ -3,7 +3,6 @@ package example.digitallife;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,9 +12,11 @@ import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
 
 import java.util.List;
 
@@ -27,6 +28,9 @@ public class Activity_main extends AppCompatActivity {
     private DigitalLife_DB db;
     private LinearLayout ll_list;
 
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,8 +40,16 @@ public class Activity_main extends AppCompatActivity {
         db = DigitalLife_DB.getInstance(this);
         ll_list = findViewById(R.id.ll_accounts);
 
+        /*
+        //recyclerView = findViewById(R.id.recycler_view);
+        //recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        //String[] myDataset = new String[] {"twitter", "google", "facebook"};
+        //recyclerView.setAdapter(new DL_Adapter(myDataset));
+
+         */
+
         // Ad block code
-        MobileAds.initialize(this, "ca-app-pub-9934738138092081~2013437011");
         AdView banner = findViewById(R.id.banner_main);
         AdRequest adRequest = new AdRequest.Builder().build();
         banner.loadAd(adRequest);
@@ -96,17 +108,14 @@ public class Activity_main extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_change_key:
-                Intent upload_login = new Intent(this, Activity_login.class);
-                upload_login.putExtra(Activity_login.RESET_KEY, true);
-                startActivity(upload_login);
-                finish();
-                return true;
-
-            default:
-                return super.onOptionsItemSelected(item);
+        if (item.getItemId() == R.id.action_change_key) {
+            Intent upload_login = new Intent(this, Activity_login.class);
+            upload_login.putExtra(Activity_login.RESET_KEY, true);
+            startActivity(upload_login);
+            finish();
+            return true;
         }
+        return super.onOptionsItemSelected(item);
     }
 
     public void insert_account(View view) {
