@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.hardware.biometrics.BiometricPrompt;
 import android.os.Build;
 import android.os.Bundle;
@@ -70,7 +71,18 @@ public class Activity_login extends AppCompatActivity {
     }
 
     private void biometric_layout() {
-        if (Build.VERSION.SDK_INT >= 28) {
+
+        boolean biometric_enabled;
+
+        // by default biometric feature is disabled
+        ib_biometric.setVisibility(View.GONE);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+
+            // checks biometric
+            biometric_enabled = getApplicationContext().getPackageManager().hasSystemFeature(PackageManager.FEATURE_FINGERPRINT);
+            if (biometric_enabled)
+                ib_biometric.setVisibility(View.VISIBLE);
 
             final Executor executor = Executors.newSingleThreadExecutor();
 
@@ -101,8 +113,6 @@ public class Activity_login extends AppCompatActivity {
                 }
             });
 
-        } else {
-            ib_biometric.setVisibility(View.GONE);
         }
     }
 
