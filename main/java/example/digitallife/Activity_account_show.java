@@ -1,5 +1,6 @@
 package example.digitallife;
 
+import android.annotation.SuppressLint;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -20,25 +21,19 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import example.digitallife.DB.Account;
-import example.digitallife.DB.DigitalLife_DB;
-
 public class Activity_account_show extends AppCompatActivity {
 
-    private static final int CODE_EDIT = 1;
-    public static final String EXTRA_ID = "EXTRA_ID";
-    public static final String ID_UPDATE = "ID_UPDATE";
-
-    private DigitalLife_DB db;
-    private Account mutant;
+    private static final String NAME = "NAME";
+    private static final String USER = "USER";
+    private static final String PASS = "PASS";
+    private static final String LINK = "LINK";
 
     private FloatingActionButton fab;
-    private TextView tv_account;
-    private TextView tv_username;
-    private TextView tv_password;
+    private TextView tv_name;
+    private TextView tv_user;
+    private TextView tv_pass;
     private Button ib_copy_user;
     private Button ib_copy_pass;
-    private Button go_web;
 
     private boolean show_password = true;
 
@@ -47,36 +42,32 @@ public class Activity_account_show extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_show);
 
+        // UI block code
         AdView banner = findViewById(R.id.banner_account_show);
         AdRequest adRequest = new AdRequest.Builder().build();
         banner.loadAd(adRequest);
 
-        db = DigitalLife_DB.getInstance(this);
-
         fab = findViewById(R.id.fab_account_show);
-        tv_account = findViewById(R.id.tv_account);
-        tv_username = findViewById(R.id.tv_username);
-        tv_password = findViewById(R.id.tv_password);
         ib_copy_user = findViewById(R.id.copy_user);
         ib_copy_pass = findViewById(R.id.copy_pass);
+        tv_name = findViewById(R.id.tv_account);
+        tv_user = findViewById(R.id.tv_username);
+        tv_pass = findViewById(R.id.tv_password);
+        tv_pass.setTransformationMethod(new PasswordTransformationMethod());
 
-        loadViews();
-        tv_password.setTransformationMethod(new PasswordTransformationMethod());
-    }
+        Intent i = getIntent();
+        tv_name.setText(i.getStringExtra(NAME));
+        tv_user.setText(i.getStringExtra(USER));
+        tv_pass.setText(i.getStringExtra(PASS));
 
-    private void loadViews() {
+        // Setting clipboard
         final ClipboardManager clipboardManager = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-        mutant = db.accountDAO().findById(getIntent().getIntExtra(EXTRA_ID, 0));
-
-        tv_account.setText(mutant.getName());
-        tv_username.setText(mutant.getUser());
-        tv_password.setText(mutant.getPass());
 
         if (clipboardManager != null) {
             ib_copy_user.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    clipboardManager.setPrimaryClip(ClipData.newPlainText("USERNAME", tv_username.getText()));
+                    clipboardManager.setPrimaryClip(ClipData.newPlainText("USERNAME", tv_user.getText()));
                     Toast.makeText(Activity_account_show.this, R.string.copy_user, Toast.LENGTH_SHORT).show();
                     //Snackbar.make(fab, R.string.copy_user, Snackbar.LENGTH_SHORT).show();
                 }
@@ -84,22 +75,13 @@ public class Activity_account_show extends AppCompatActivity {
             ib_copy_pass.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    clipboardManager.setPrimaryClip(ClipData.newPlainText("PASSWORD", tv_password.getText()));
+                    clipboardManager.setPrimaryClip(ClipData.newPlainText("PASSWORD", tv_pass.getText()));
                     Toast.makeText(Activity_account_show.this, R.string.copy_password, Toast.LENGTH_SHORT).show();
                     //Snackbar.make(fab, R.string.copy_password, Snackbar.LENGTH_SHORT).show();
                 }
             });
         }
-    }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == CODE_EDIT) {
-            if (resultCode == RESULT_OK) {
-                loadViews();
-            }
-        }
     }
 
     @Override
@@ -108,23 +90,27 @@ public class Activity_account_show extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
+        Intent intent = getIntent();
+
         switch (item.getItemId()) {
             case R.id.action_edit:
-                Intent edit = new Intent(this, Activity_account_form.class);
-                edit.putExtra(ID_UPDATE, mutant.getId());
-                startActivityForResult(edit, CODE_EDIT);
+                intent.putExtra("ACTION", "UPDATE");
+                setResult(RESULT_OK, intent);
+                finish();
                 return true;
 
             case R.id.action_delete:
-                db.accountDAO().deleteAccount(mutant);
-                DigitalLife_DB.destroyInstance();
+                intent.putExtra("ACTION", "DELETE");
+                setResult(RESULT_OK, intent);
                 finish();
                 return true;
 
             case R.id.action_go_web:
-                openWebPage(mutant.getLink());
+                openWebPage(getIntent().getStringExtra(LINK));
                 return true;
 
             default:
@@ -144,10 +130,10 @@ public class Activity_account_show extends AppCompatActivity {
 
     public void showHide_password(View view) {
         if (show_password) {
-            tv_password.setTransformationMethod(null);
+            tv_pass.setTransformationMethod(null);
             fab.setImageResource(R.drawable.ic_hide);
         } else {
-            tv_password.setTransformationMethod(new PasswordTransformationMethod());
+            tv_pass.setTransformationMethod(new PasswordTransformationMethod());
             fab.setImageResource(R.drawable.ic_show);
 
         }

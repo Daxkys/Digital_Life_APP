@@ -20,10 +20,10 @@ public interface Account_DAO {
     @Delete
     void deleteAccount(Account account);
 
-    @Query("SELECT * FROM accounts")
+    @Query("SELECT * FROM accounts ORDER BY name")
     List<Account> getAllAccounts();
 
-    @Query("SELECT * FROM accounts WHERE id IN (:idAccount)")
+    @Query("SELECT * FROM accounts WHERE id = (:idAccount)")
     Account findById(int idAccount);
 
     @Query("SELECT * FROM accounts WHERE name LIKE (:name)")

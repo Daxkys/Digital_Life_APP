@@ -42,6 +42,10 @@
     </style>
     -->
 
+    <style name="recycler_item">
+        <item name="backgroundTint">@drawable/recycler_item</item>
+    </style>
+
     <!-- Style of border buttons -->
     <style name="dl_Button" parent="Widget.MaterialComponents.Button">
         <item name="backgroundTint">@color/primary</item>
