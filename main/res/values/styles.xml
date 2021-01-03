@@ -1,57 +1,27 @@
 <resources>
 
     <!-- Base application theme -->
-    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
-        <item name="colorPrimary">@color/primary</item>
-        <item name="colorOnPrimary">@color/onPrimary</item>
-        <item name="colorPrimaryVariant">@color/primaryVariant</item>
-        <!--
-        <item name="colorSecondary">@color/secondary</item>
-        <item name="colorOnSecondary">@color/onSecondary</item>
-        <item name="colorSecondaryVariant">@color/secondaryVariant</item>
-        -->
 
-        <item name="android:colorBackground">@color/background</item>
-        <item name="colorOnBackground">@color/onBackground</item>
+    <!-- TODO: change to Theme.MaterialComponents.DayNight -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="colorPrimary">@color/blue_primary</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorPrimaryVariant">@color/blue_primary_dark</item>
 
-        <item name="colorSurface">@color/surface</item>
-        <item name="colorOnSurface">@color/onSurface</item>
+        <item name="colorSecondary">@color/blue_primary_light</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorSecondaryVariant">@color/blue_primary</item>
 
-        <item name="colorError">@color/error</item>
-        <item name="colorOnError">@color/onError</item>
-    </style>
+        <item name="android:colorBackground">@color/dark_grey</item>
+        <item name="colorOnBackground">@color/white</item>
 
-    <!-- Dark application theme
-    <style name="DarkTheme" parent="Theme.MaterialComponents.DayNight">
-        <item name="colorPrimary">@color/primary</item>
-        <item name="colorOnPrimary">@color/onPrimary</item>
-        <item name="colorPrimaryVariant">@color/primaryVariant</item>
+        <item name="colorSurface">@color/brand_background</item>
+        <item name="colorOnSurface">@color/white</item>
 
-        <item name="colorSecondary">@color/secondary</item>
-        <item name="colorOnSecondary">@color/onSecondary</item>
-        <item name="colorSecondaryVariant">@color/secondaryVariant</item>
+        <item name="colorError">@color/red_500</item>
+        <item name="colorOnError">@color/white</item>
 
-        <item name="android:colorBackground">@color/background</item>
-        <item name="colorOnBackground">@color/onBackground</item>
 
-        <item name="colorSurface">@color/surface</item>
-        <item name="colorOnSurface">@color/onSurface</item>
-
-        <item name="colorError">@color/error</item>
-        <item name="colorOnError">@color/onError</item>
-    </style>
-    -->
-
-    <style name="recycler_item">
-        <item name="backgroundTint">@drawable/recycler_item</item>
-    </style>
-
-    <!-- Style of border buttons -->
-    <style name="dl_Button" parent="Widget.MaterialComponents.Button">
-        <item name="backgroundTint">@color/primary</item>
-        <item name="strokeColor">@color/primaryVariant</item>
-        <item name="strokeWidth">1dp</item>
-        <item name="android:layout_margin">4dp</item>
     </style>
 
     <!-- Splash screen -->

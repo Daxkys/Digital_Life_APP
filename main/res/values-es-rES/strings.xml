@@ -20,8 +20,8 @@
     <string name="edit">Editar</string>
     <string name="b_browser">Abrir en el navegador</string>
     <string name="b_hide_show">Botón para mostrar u ocultar la contraseña</string>
-    <string name="b_copy_user">Botón para copiar el nombre de usuario al portapapeles</string>
-    <string name="b_copy_pass">Botón para copiar la contraseña al portapapeles</string>
+    <string name="b_copy_user">Copiar usuario</string>
+    <string name="b_copy_pass">Copiar contraseña</string>
     <string name="search_fail">Nada que mostrar… 😖</string>
     <string name="biometric_verification">Verificación biometrica</string>
     <string name="biometric_desc">Usa el sistema de verificación biométrica para autentificarte</string>
@@ -29,4 +29,7 @@
     <string name="copy_user">Usuario copiado al portapapeles</string>
     <string name="copy_password">Contraseña copiada al portapapeles</string>
     <string name="app_name">DiPass</string>
+    <string name="b_insert">Inserta una cuenta</string>
+    <string name="total_accounts">Cuentas guardadas</string>
+    <string name="fingerprint">Huella</string>
 </resources>

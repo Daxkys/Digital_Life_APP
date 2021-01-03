@@ -129,7 +129,7 @@ public class Activity_login extends AppCompatActivity {
 
             // Instructions visible and log in by biometric off
             tv_firstLogin.setVisibility(View.VISIBLE);
-            ib_biometric.setVisibility(View.GONE);
+            ib_biometric.setVisibility(View.INVISIBLE);
 
             // principal button changed action to set the main key
             b_setLogin.setText(R.string.save);

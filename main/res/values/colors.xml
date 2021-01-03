@@ -1,35 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary">#00B0F6</color>
-    <color name="primaryVariant">#3E5C76</color>
-    <color name="onPrimary">#ffffff</color>
-
-    <color name="secondary">#00B0F6</color>
-    <color name="secondaryVariant">#5B85AA</color>
-    <color name="onSecondary">#000000</color>
-
-    <color name="background">#ffffff</color>
-    <color name="onBackground">#000000</color>
-    <color name="surface">#5B85AA</color>
-    <color name="onSurface">#000000</color>
-    <color name="error">#FF1744</color>
-    <color name="onError">#000000</color>
-
-    <!-- LIST OF COLORS -->
-
     <color name="black">#000000</color>
     <color name="white">#ffffff</color>
-    <color name="blueGray100">#CFD8DC</color>
-    <color name="cyanAdditive">#00FFFF</color>
-    <color name="cyanStandard">#00B0F6</color>
-    <color name="blueSteel">#5B85AA</color>
-    <color name="blueElectricDark">#3E5C76</color>
-    <color name="redA700">#D32F2F</color>
+    <color name="dark_grey">#121212</color>
 
-    <!-- 4 tones of blue -->
-    <color name="blue_primary">#00B0F6</color>
-    <color name="blue_primaryDark">#0081c3</color>
-    <color name="blue_primaryLight">#67e2ff</color>
-    <color name="blue_background">#455a64</color>
+    <!-- brand colors -->
+    <color name="blue_primary_light">#67e2ff</color>
+    <color name="blue_primary">#00B0F6</color> <!-- Cyan Standard -->
+    <color name="blue_primary_dark">#0081c3</color>
 
+    <color name="brand_background">#111F25</color>
+    <color name="red_500">#f44336</color>
 </resources>

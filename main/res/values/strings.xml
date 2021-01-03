@@ -19,8 +19,8 @@
     <string name="edit">Edit</string>
     <string name="b_browser">Open in browser</string>
     <string name="b_hide_show">Hide or show password button</string>
-    <string name="b_copy_user">button to copy username to clipboard</string>
-    <string name="b_copy_pass">Button to copy password to clipboard</string>
+    <string name="b_copy_user">Copy username</string>
+    <string name="b_copy_pass">Copy password</string>
     <string name="search_fail">Nothing to show… 😖</string>
     <string name="biometric_verification">Biometric verification</string>
     <string name="biometric_desc">Use the biometric verification system to authenticate</string>
@@ -28,4 +28,7 @@
     <string name="copy_user">username copied to the clipboard</string>
     <string name="copy_password">password copied to the clipboard</string>
     <string name="app_name">DiPass</string>
+    <string name="b_insert">Insert an account</string>
+    <string name="total_accounts">Accounts stored</string>
+    <string name="fingerprint">Fingerprint</string>
 </resources>

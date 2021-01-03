@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-import example.digitallife.DB.Account;
+import example.digitallife.database.Account;
 
 public class DL_Adapter extends RecyclerView.Adapter<DL_Adapter.DLViewHolder> implements View.OnClickListener {
 

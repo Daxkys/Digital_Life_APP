@@ -1,4 +1,4 @@
-package example.digitallife.DB;
+package example.digitallife.database;
 
 
 import androidx.room.ColumnInfo;

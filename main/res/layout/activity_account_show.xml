@@ -7,25 +7,29 @@
     android:orientation="vertical"
     tools:context=".Activity_account_show">
 
+    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/banner_account_show"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        ads:adSize="SMART_BANNER"
+        ads:adUnitId="ca-app-pub-9934738138092081/7339226369" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/banner_account_show"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            ads:adSize="SMART_BANNER"
-            ads:adUnitId="ca-app-pub-9934738138092081/7339226369" />
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
 
         <LinearLayout
-            android:id="@+id/ll_account"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:gravity="center_vertical"
-            android:orientation="vertical">
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/recycler_item"
+            android:orientation="vertical"
+            android:padding="4dp">
 
             <TextView
                 android:id="@+id/tv_account"
@@ -34,8 +38,8 @@
                 android:layout_margin="4dp"
                 android:gravity="center"
                 android:text="@string/account"
-                android:textAllCaps="true"
-                android:textSize="32sp"
+                android:textColor="@color/white"
+                android:textSize="24sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -45,7 +49,8 @@
                 android:layout_margin="4dp"
                 android:gravity="center"
                 android:text="@string/username"
-                android:textSize="24sp" />
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/tv_password"
@@ -54,37 +59,38 @@
                 android:layout_margin="4dp"
                 android:gravity="center"
                 android:text="@string/password"
-                android:textSize="24sp" />
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/ll_user"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <Button
                 android:id="@+id/copy_user"
-                style="?attr/materialButtonOutlinedStyle"
-                android:layout_width="wrap_content"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="4dp"
                 android:contentDescription="@string/b_copy_user"
-                android:text="@string/username"
-                app:icon="@drawable/ic_copy" />
+                android:text="@string/b_copy_user"
+                app:icon="@drawable/ic_copy"
+                app:iconGravity="textStart"
+                app:iconTint="@color/blue_primary" />
 
             <Button
                 android:id="@+id/copy_pass"
-                style="?attr/materialButtonOutlinedStyle"
-                android:layout_width="wrap_content"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="4dp"
                 android:contentDescription="@string/b_copy_pass"
-                android:text="@string/password"
-                app:icon="@drawable/ic_copy" />
+                android:text="@string/b_copy_pass"
+                app:icon="@drawable/ic_copy"
+                app:iconGravity="textStart"
+                app:iconTint="@color/blue_primary" />
 
         </LinearLayout>
 
@@ -95,17 +101,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        app:fabAlignmentMode="center"
+        app:fabAlignmentMode="end"
         app:fabAnimationMode="slide"
-        app:hideOnScroll="true" />
+        app:hideOnScroll="false"
+        app:menu="@menu/menu_account_show" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_account_show"
-        android:onClick="showHide_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:contentDescription="@string/show_hide"
+        android:onClick="showHide_password"
         app:layout_anchor="@id/bar"
-        app:backgroundTint="@color/primary"
-        app:srcCompat="@drawable/ic_show" />
+        app:srcCompat="@drawable/ic_show"
+        app:tint="@color/black" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

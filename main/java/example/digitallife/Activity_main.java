@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.SearchView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -13,11 +14,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.material.bottomappbar.BottomAppBar;
 
 import java.util.List;
 
-import example.digitallife.DB.Account;
-import example.digitallife.DB.DigitalLife_DB;
+import example.digitallife.database.Account;
+import example.digitallife.database.DigitalLife_DB;
 
 public class Activity_main extends AppCompatActivity {
 
@@ -40,14 +42,22 @@ public class Activity_main extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // UI and Ad block code
         setContentView(R.layout.activity_main);
+        recyclerView = findViewById(R.id.recycler_view);
+        BottomAppBar bottomAppBar = findViewById(R.id.bar);
+        setSupportActionBar(bottomAppBar);
+
+        AdView banner = findViewById(R.id.banner_main);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        banner.loadAd(adRequest);
 
         // Initialized variables
         db = DigitalLife_DB.getInstance(this);
         accounts = db.accountDAO().getAllAccounts();
 
         // RecyclerView block code
-        recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 1)); //TODO: coger de sharedPreferences el valor de columnas (1 o 2)
 
         /* FOR A FUTURE VERSION
@@ -65,16 +75,15 @@ public class Activity_main extends AppCompatActivity {
         });
         recyclerView.setAdapter(dl_adapter);
 
-        // Ad block code
-        AdView banner = findViewById(R.id.banner_main);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        banner.loadAd(adRequest);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         dl_adapter.notifyDataSetChanged();
+
+        TextView tv_sumAccounts = findViewById(R.id.tv_sumAccounts);
+        tv_sumAccounts.setText(getResources().getString(R.string.total_accounts).concat(": ").concat(String.valueOf(accounts.size())));
     }
 
     @Override
@@ -111,9 +120,34 @@ public class Activity_main extends AppCompatActivity {
 
                     } else if (action.equals("DELETE")) {
 
-                        db.accountDAO().deleteAccount(accounts.get(position));
-                        accounts.remove(position);
-                        dl_adapter.notifyItemRemoved(position);
+                        boolean bool_delete = true;
+
+                        /* TODO: Alert Dialog
+                        new MaterialAlertDialogBuilder(this)
+                                .setTitle("borrar cuenta?")
+                                .setMessage("la cuenta se borrara permanentemente")
+                                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        borrar[0] = false;
+                                    }
+                                })
+                                .setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        borrar[0] = true;
+                                    }
+                                })
+                                .show();
+
+                         */
+
+                        if (bool_delete) {
+                            db.accountDAO().deleteAccount(accounts.get(position));
+                            accounts.remove(position);
+                            dl_adapter.notifyItemRemoved(position);
+                        }
+
                     }
 
                     break;

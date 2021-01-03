@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class Activity_account_show extends AppCompatActivity {
@@ -29,11 +30,8 @@ public class Activity_account_show extends AppCompatActivity {
     private static final String LINK = "LINK";
 
     private FloatingActionButton fab;
-    private TextView tv_name;
     private TextView tv_user;
     private TextView tv_pass;
-    private Button ib_copy_user;
-    private Button ib_copy_pass;
 
     private boolean show_password = true;
 
@@ -47,10 +45,14 @@ public class Activity_account_show extends AppCompatActivity {
         AdRequest adRequest = new AdRequest.Builder().build();
         banner.loadAd(adRequest);
 
+        // BottomAppBar config
+        BottomAppBar bottomAppBar = findViewById(R.id.bar);
+        setSupportActionBar(bottomAppBar);
+
         fab = findViewById(R.id.fab_account_show);
-        ib_copy_user = findViewById(R.id.copy_user);
-        ib_copy_pass = findViewById(R.id.copy_pass);
-        tv_name = findViewById(R.id.tv_account);
+        Button ib_copy_user = findViewById(R.id.copy_user);
+        Button ib_copy_pass = findViewById(R.id.copy_pass);
+        TextView tv_name = findViewById(R.id.tv_account);
         tv_user = findViewById(R.id.tv_username);
         tv_pass = findViewById(R.id.tv_password);
         tv_pass.setTransformationMethod(new PasswordTransformationMethod());
