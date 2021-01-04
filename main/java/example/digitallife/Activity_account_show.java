@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.material.bottomappbar.BottomAppBar;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class Activity_account_show extends AppCompatActivity {
@@ -71,7 +73,7 @@ public class Activity_account_show extends AppCompatActivity {
                 public void onClick(View view) {
                     clipboardManager.setPrimaryClip(ClipData.newPlainText("USERNAME", tv_user.getText()));
                     Toast.makeText(Activity_account_show.this, R.string.copy_user, Toast.LENGTH_SHORT).show();
-                    //Snackbar.make(fab, R.string.copy_user, Snackbar.LENGTH_SHORT).show();
+                    // TODO: Snackbar.make(fab, R.string.copy_user, Snackbar.LENGTH_SHORT).show();
                 }
             });
             ib_copy_pass.setOnClickListener(new View.OnClickListener() {
@@ -79,7 +81,7 @@ public class Activity_account_show extends AppCompatActivity {
                 public void onClick(View view) {
                     clipboardManager.setPrimaryClip(ClipData.newPlainText("PASSWORD", tv_pass.getText()));
                     Toast.makeText(Activity_account_show.this, R.string.copy_password, Toast.LENGTH_SHORT).show();
-                    //Snackbar.make(fab, R.string.copy_password, Snackbar.LENGTH_SHORT).show();
+                    // TODO: Snackbar.make(fab, R.string.copy_password, Snackbar.LENGTH_SHORT).show();
                 }
             });
         }
@@ -96,7 +98,7 @@ public class Activity_account_show extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
 
         switch (item.getItemId()) {
             case R.id.action_edit:
@@ -106,9 +108,27 @@ public class Activity_account_show extends AppCompatActivity {
                 return true;
 
             case R.id.action_delete:
-                intent.putExtra("ACTION", "DELETE");
-                setResult(RESULT_OK, intent);
-                finish();
+
+                new MaterialAlertDialogBuilder(this)
+                        .setTitle(R.string.ask_del_account)
+                        .setMessage(R.string.permanent_action)
+                        .setNegativeButton(R.string.gen_cancel, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        })
+                        .setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                intent.putExtra("ACTION", "DELETE");
+                                setResult(RESULT_OK, intent);
+                                finish();
+                            }
+                        })
+                        .show();
+
+
                 return true;
 
             case R.id.action_go_web:
@@ -131,13 +151,13 @@ public class Activity_account_show extends AppCompatActivity {
     }
 
     public void showHide_password(View view) {
+        view.animate();
         if (show_password) {
             tv_pass.setTransformationMethod(null);
             fab.setImageResource(R.drawable.ic_hide);
         } else {
             tv_pass.setTransformationMethod(new PasswordTransformationMethod());
             fab.setImageResource(R.drawable.ic_show);
-
         }
         show_password = !show_password;
     }

@@ -58,10 +58,10 @@ public class Activity_main extends AppCompatActivity {
         accounts = db.accountDAO().getAllAccounts();
 
         // RecyclerView block code
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 1)); //TODO: coger de sharedPreferences el valor de columnas (1 o 2)
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 1)); //TODO: get sharedPreferences column value (1 o 2)
 
         /* FOR A FUTURE VERSION
-        TODO: implementar acciones rapidas desde pantalla principal
+        TODO: implement ItemTouchHelper
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(createHelperCallback());
         itemTouchHelper.attachToRecyclerView(recyclerView);
          */
@@ -120,40 +120,16 @@ public class Activity_main extends AppCompatActivity {
 
                     } else if (action.equals("DELETE")) {
 
-                        boolean bool_delete = true;
-
-                        /* TODO: Alert Dialog
-                        new MaterialAlertDialogBuilder(this)
-                                .setTitle("borrar cuenta?")
-                                .setMessage("la cuenta se borrara permanentemente")
-                                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        borrar[0] = false;
-                                    }
-                                })
-                                .setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        borrar[0] = true;
-                                    }
-                                })
-                                .show();
-
-                         */
-
-                        if (bool_delete) {
-                            db.accountDAO().deleteAccount(accounts.get(position));
-                            accounts.remove(position);
-                            dl_adapter.notifyItemRemoved(position);
-                        }
+                        db.accountDAO().deleteAccount(accounts.get(position));
+                        accounts.remove(position);
+                        dl_adapter.notifyItemRemoved(position);
 
                     }
 
                     break;
 
                 case CODE_EDIT:
-                    // load the old accountand set new values
+                    // load the old account and set new values
                     account = db.accountDAO().findById(id);
 
                     account.setName(name);
@@ -184,7 +160,7 @@ public class Activity_main extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                //query_search(newText);
+                query_search(newText);
                 return false;
             }
         });
@@ -206,7 +182,7 @@ public class Activity_main extends AppCompatActivity {
 
 
     public void startActivity_Form(View view) {
-        Intent intent = new Intent(this, Activity_account_form.class);
+        Intent intent = new Intent(view.getContext(), Activity_account_form.class);
         startActivityForResult(intent, CODE_FORM);
     }
 
@@ -238,42 +214,13 @@ public class Activity_main extends AppCompatActivity {
         startActivityForResult(intent, CODE_EDIT);
     }
 
-    // TODO: pasar a versión con RecyclerView
-    /*
     private void query_search(String name) {
 
-
-        recyclerView.removeAllViews();
-        List<Account> list_accounts = db.accountDAO().selectLike_byName("%".concat(name).concat("%"));
-
-        if (list_accounts.size() >= 1) {
-
-            for (Account a : list_accounts) {
-
-                Button b = new Button(this);
-                b.setId(a.getId());
-                b.setText(a.getName());
-                b.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        update_account(v.getId());
-                    }
-                });
-
-                recyclerView.addView(b);
-            }
-        } else {
-            TextView tv_fail_search = new TextView(this);
-            tv_fail_search.setGravity(Gravity.CENTER);
-            tv_fail_search.setText(R.string.search_fail);
-            tv_fail_search.setTextColor(Color.RED);
-            recyclerView.addView(tv_fail_search);
-        }
+        List<Account> filteredList = db.accountDAO().selectLike_byName("%".concat(name).concat("%"));
+        dl_adapter.filter(filteredList);
     }
 
-     */
-
-    // TODO: acciones rapidas para futura version
+    // TODO: ItemTouchHelper - swipe
     /*
     private ItemTouchHelper.Callback createHelperCallback() {
         return new ItemTouchHelper.SimpleCallback(

@@ -6,7 +6,7 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-@Database(entities = {Account.class}, version = 1)
+@Database(entities = {Account.class}, version = 1, exportSchema = false)
 public abstract class DigitalLife_DB extends RoomDatabase {
 
     private static DigitalLife_DB instance;
@@ -21,7 +21,9 @@ public abstract class DigitalLife_DB extends RoomDatabase {
         return instance;
     }
 
+    /*
     public static void destroyInstance() {
         instance = null;
     }
+     */
 }

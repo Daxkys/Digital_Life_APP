@@ -14,7 +14,7 @@ import example.digitallife.database.Account;
 
 public class DL_Adapter extends RecyclerView.Adapter<DL_Adapter.DLViewHolder> implements View.OnClickListener {
 
-    private final List<Account> accounts;
+    private List<Account> accounts;
     private View.OnClickListener listener;
 
     // Provide a suitable constructor (depends on the kind of dataset)
@@ -54,6 +54,11 @@ public class DL_Adapter extends RecyclerView.Adapter<DL_Adapter.DLViewHolder> im
         if (listener != null) {
             listener.onClick(v);
         }
+    }
+
+    public void filter(List<Account> filteredList) {
+        accounts = filteredList;
+        notifyDataSetChanged();
     }
 
 

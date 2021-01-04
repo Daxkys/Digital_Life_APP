@@ -72,7 +72,7 @@ public class Activity_account_form extends AppCompatActivity {
         String link = et_link.getText().toString();
 
         if (name.isEmpty()) {
-            Toast.makeText(this, R.string.fail_input_account, Toast.LENGTH_LONG).show();
+            Toast.makeText(view.getContext(), R.string.fail_input_account, Toast.LENGTH_LONG).show();
         } else {
             Intent intent = getIntent();
             intent.putExtra(NAME, name);

@@ -5,7 +5,6 @@
     <string name="username">Usuario</string>
     <string name="link">Enlace</string>
     <string name="fail_input_account">Pon como mínimo el nombre de cuenta</string>
-    <string name="start_add">Empieza a anotar tus cuentas digitales!</string>
     <string name="show_hide">mostrar o ocultar contraseña</string>
     <string name="main_key_set">Llave principal establecida!</string>
     <string name="main_key_error">Llave principal incorrecta!</string>
@@ -16,13 +15,11 @@
     <string name="save">Guardar</string>
     <string name="main_key_change">Cambiar llave principal…</string>
     <string name="main_key">llave principal</string>
-    <string name="delete">Borrar…</string>
+    <string name="delete">Borrar</string>
     <string name="edit">Editar</string>
     <string name="b_browser">Abrir en el navegador</string>
-    <string name="b_hide_show">Botón para mostrar u ocultar la contraseña</string>
     <string name="b_copy_user">Copiar usuario</string>
     <string name="b_copy_pass">Copiar contraseña</string>
-    <string name="search_fail">Nada que mostrar… 😖</string>
     <string name="biometric_verification">Verificación biometrica</string>
     <string name="biometric_desc">Usa el sistema de verificación biométrica para autentificarte</string>
     <string name="gen_cancel">Cancelar</string>
@@ -32,4 +29,6 @@
     <string name="b_insert">Inserta una cuenta</string>
     <string name="total_accounts">Cuentas guardadas</string>
     <string name="fingerprint">Huella</string>
+    <string name="ask_del_account">¿Eliminar esta cuenta?</string>
+    <string name="permanent_action">Esta acción no se puede deshacer</string>
 </resources>

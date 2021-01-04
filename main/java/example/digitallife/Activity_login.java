@@ -75,7 +75,7 @@ public class Activity_login extends AppCompatActivity {
         boolean biometric_enabled;
 
         // by default biometric feature is disabled
-        ib_biometric.setVisibility(View.GONE);
+        ib_biometric.setVisibility(View.INVISIBLE);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
 
@@ -156,7 +156,7 @@ public class Activity_login extends AppCompatActivity {
 
         if (main_key.length() < 4) {
             Toast.makeText(this, R.string.main_key_must_length, Toast.LENGTH_SHORT).show();
-            //Snackbar.make(b_setLogin, R.string.main_key_must_length, Snackbar.LENGTH_SHORT).show();
+            // TODO: Snackbar.make(b_setLogin, R.string.main_key_must_length, Snackbar.LENGTH_SHORT).show();
         } else {
             SharedPreferences.Editor editor = login_preference.edit();
             editor.putBoolean(FIRST_TIME, false);
@@ -164,7 +164,7 @@ public class Activity_login extends AppCompatActivity {
             editor.apply();
 
             Toast.makeText(this, R.string.main_key_set, Toast.LENGTH_SHORT).show();
-            //Snackbar.make(b_setLogin, R.string.main_key_set, Snackbar.LENGTH_SHORT).show();
+            // TODO: Snackbar.make(b_setLogin, R.string.main_key_set, Snackbar.LENGTH_SHORT).show();
 
             // MAIN KEY STABILIZED: instructions updated, biometric is enabled and principal button now log in
             tv_firstLogin.setText(R.string.main_key_after_set);
@@ -195,7 +195,7 @@ public class Activity_login extends AppCompatActivity {
         } else {
 
             Toast.makeText(this, R.string.main_key_error, Toast.LENGTH_SHORT).show();
-            //Snackbar.make(view, R.string.main_key_error, Snackbar.LENGTH_SHORT).show();
+            // TODO: Snackbar.make(view, R.string.main_key_error, Snackbar.LENGTH_SHORT).show();
             et_login.setText("");
         }
     }
