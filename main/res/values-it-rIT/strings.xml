@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Atena</string>
+    <string name="account">account</string>
+    <string name="username">Nome utente</string>
+    <string name="password">Parola d\'ordine</string>
+    <string name="link">Link</string>
+    <string name="edit">modificare</string>
+    <string name="delete">Elimina</string>
+    <string name="save">Salva</string>
+    <string name="enter">accedere</string>
+    <string name="gen_cancel">Annulla</string>
+    <string name="permanent_action">questa azione non può essere annullata</string>
+    <string name="main_key">chiave principale</string>
+    <string name="main_key_change">Cambia chiave principale…</string>
+    <string name="main_key_set">Chiave principale stabilita!</string>
+    <string name="main_key_error">Chiave principale sbagliata!</string>
+    <string name="main_key_before">Imposta la tua chiave principale per accedere e premi il pulsante per salvarla.</string>
+    <string name="main_key_must_length">La chiave principale deve essere lunga almeno 4 caratteri</string>
+    <string name="main_key_after_set">Hai appena impostato la chiave principale! Puoi iniziare.</string>
+    <string name="fingerprint">impronta digitale</string>
+    <string name="biometric_verification">Verifica biometrica</string>
+    <string name="biometric_desc">Usa il sistema di verifica biometrica per autenticarti</string>
+    <string name="fail_input_account">Metti almeno il nome dell\'account</string>
+    <string name="total_accounts">Account archiviati</string>
+    <string name="b_insert">Inserisci un account</string>
+    <string name="ask_del_account">Eliminare questo account?</string>
+    <string name="b_browser">Apri nel browser</string>
+    <string name="b_copy_user">Copia nome utente</string>
+    <string name="b_copy_pass">Copia la parola d\'ordine</string>
+    <string name="copy_user">nome utente copiato negli appunti</string>
+    <string name="copy_password">parola d\'ordine copiata negli appunti</string>
+    <string name="show_hide">mostrare o nascondere la parola d\'ordine</string>
+</resources>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Athéna</string>
+    <string name="account">Compte</string>
+    <string name="username">Nom d\'utilisateur</string>
+    <string name="password">Mot de passe</string>
+    <string name="link">Lien</string>
+    <string name="edit">Éditer</string>
+    <string name="delete">Effacer</string>
+    <string name="save">Sauver</string>
+    <string name="enter">Entrer</string>
+    <string name="gen_cancel">Annuler</string>
+    <string name="permanent_action">cette action ne peut pas être annulée</string>
+    <string name="main_key">clé principale</string>
+    <string name="main_key_change">Changer la clé principale…</string>
+    <string name="main_key_set">Clé principale établie!</string>
+    <string name="main_key_error">Mauvaise clé principale!</string>
+    <string name="main_key_before">Réglez votre clé principale pour vous connecter et appuyez sur le bouton pour l\'enregistrer.</string>
+    <string name="main_key_must_length">La clé principale doit comporter au moins 4 caractères</string>
+    <string name="main_key_after_set">Vous venez de définir la clé principale! Tu peux commencer.</string>
+    <string name="fingerprint">Empreinte digitale</string>
+    <string name="biometric_verification">Vérification biométrique</string>
+    <string name="biometric_desc">Utilisez le système de vérification biométrique pour vous authentifier</string>
+    <string name="fail_input_account">Mettez au moins le nom du compte</string>
+    <string name="total_accounts">Comptes stockés</string>
+    <string name="b_insert">Insérez un compte</string>
+    <string name="ask_del_account">Supprimer ce compte?</string>
+    <string name="b_browser">Ouvrir dans le navigateur</string>
+    <string name="b_copy_user">Copier le nom d\'utilisateur</string>
+    <string name="b_copy_pass">Copier le mot de passe</string>
+    <string name="copy_user">nom d\'utilisateur copié dans le presse-papiers</string>
+    <string name="copy_password">mot de passe copié dans le presse-papiers</string>
+    <string name="show_hide">afficher ou masquer le mot de passe</string>
+</resources>

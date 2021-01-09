@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">雅典娜</string>
+    <string name="account">帐户</string>
+    <string name="username">用户名</string>
+    <string name="password">密码</string>
+    <string name="link">链接</string>
+    <string name="edit">编辑</string>
+    <string name="delete">删除</string>
+    <string name="save">保存</string>
+    <string name="enter">输入</string>
+    <string name="gen_cancel">取消</string>
+    <string name="permanent_action">此操作无法撤消</string>
+    <string name="main_key">主键</string>
+    <string name="main_key_change">更改主键…</string>
+    <string name="main_key_set">主键已建立！</string>
+    <string name="main_key_error">主键错误！</string>
+    <string name="main_key_before">将您的主键设置为登录，然后按按钮进行保存。</string>
+    <string name="main_key_must_length">主键长度必须至少为4个字符</string>
+    <string name="main_key_after_set">您只需设置主键！ 你可以开始了。</string>
+    <string name="fingerprint">指纹</string>
+    <string name="biometric_verification">生物特征验证</string>
+    <string name="biometric_desc">使用生物特征验证系统进行身份验证</string>
+    <string name="fail_input_account">至少输入帐户名</string>
+    <string name="total_accounts">帐户已存储</string>
+    <string name="b_insert">插入帐号</string>
+    <string name="ask_del_account">删除这个帐户？</string>
+    <string name="b_browser">在浏览器中打开</string>
+    <string name="b_copy_user">复制用户名</string>
+    <string name="b_copy_pass">复制密码</string>
+    <string name="copy_user">用户名已复制到剪贴板</string>
+    <string name="copy_password">密码复制到剪贴板</string>
+    <string name="show_hide">显示或隐藏密码</string>
+</resources>
