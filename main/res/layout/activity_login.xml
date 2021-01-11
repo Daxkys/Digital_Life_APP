@@ -29,7 +29,7 @@
             android:gravity="center"
             android:text="@string/main_key_before"
             android:textAlignment="center"
-            android:textColor="@color/white"
+            android:textColor="@color/primary"
             android:textSize="20sp" />
 
         <com.google.android.material.textfield.TextInputLayout
@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="numberPassword"
-                android:textColorHint="@color/white" />
+                android:textColor="@color/black" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -65,8 +65,7 @@
                 android:layout_weight="1"
                 android:text="@string/fingerprint"
                 app:icon="@drawable/ic_fingerprint"
-                app:iconGravity="textStart"
-                app:iconTint="@color/blue_primary" />
+                app:iconGravity="textStart" />
 
             <Button
                 style="@style/Widget.MaterialComponents.Button"

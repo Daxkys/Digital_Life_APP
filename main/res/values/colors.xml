@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <color name="primary">@color/green_oliveDrab</color>
+    <color name="secondary">@color/triadic1</color>
+    <color name="accent">@color/complementary</color>
+
     <color name="black">#000000</color>
     <color name="white">#ffffff</color>
-    <color name="dark_grey">#121212</color>
 
     <!-- brand colors -->
-    <color name="blue_primary_light">#67e2ff</color>
-    <color name="blue_primary">#00B0F6</color> <!-- Cyan Standard -->
-    <color name="blue_primary_dark">#0081c3</color>
+    <color name="green_oliveDrab">#6B8E23</color>
+    <color name="white_marble">#FFFFF0</color>
+    <color name="complementary">#47238e</color>
+    <color name="analogous1" tools:keep="@color/analogous1">#8e7c23</color>
+    <color name="analogous2" tools:keep="@color/analogous2">#358e23</color>
+    <color name="triadic1">#238e47</color>
+    <color name="triadic2" tools:keep="@color/triadic2">#236a8e</color>
 
-    <color name="brand_background">#111F25</color>
     <color name="red_500">#f44336</color>
 </resources>

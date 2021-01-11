@@ -3,14 +3,12 @@
 
     <item>
         <shape>
-            <solid android:color="@color/brand_background" />
+            <solid android:color="@color/ic_launcher_background" />
         </shape>
     </item>
 
-    <item>
-        <bitmap
-            android:gravity="center"
-            android:src="@mipmap/ic_launcher_foreground" />
-    </item>
+    <item
+        android:drawable="@drawable/ic_launcher_foreground"
+        android:gravity="center" />
 
 </layer-list>
