@@ -2,6 +2,7 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinatorLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -26,41 +27,45 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="16dp"
             android:background="@drawable/recycler_item"
             android:orientation="vertical"
-            android:padding="4dp">
+            android:padding="16dp">
 
             <TextView
                 android:id="@+id/tv_account"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="4dp"
                 android:gravity="center"
                 android:text="@string/account"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:textColor="@color/white_marble" />
+                android:textColor="@color/white_marble"
+                style="@style/Athena.Headline4" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="8dp" />
 
             <TextView
                 android:id="@+id/tv_username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="4dp"
                 android:gravity="center"
                 android:text="@string/username"
-                android:textSize="16sp"
-                android:textColor="@color/white_marble" />
+                android:textColor="@color/white_marble"
+                style="@style/Athena.Body1" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="4dp" />
 
             <TextView
                 android:id="@+id/tv_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="4dp"
                 android:gravity="center"
                 android:text="@string/password"
-                android:textSize="16sp"
-                android:textColor="@color/white_marble" />
+                android:textColor="@color/white_marble"
+                style="@style/Athena.Body1" />
 
         </LinearLayout>
 
@@ -75,7 +80,6 @@
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:contentDescription="@string/b_copy_user"
                 android:text="@string/b_copy_user"
                 app:icon="@drawable/ic_copy"
                 app:iconGravity="textStart" />
@@ -85,7 +89,6 @@
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:contentDescription="@string/b_copy_pass"
                 android:text="@string/b_copy_pass"
                 app:icon="@drawable/ic_copy"
                 app:iconGravity="textStart" />

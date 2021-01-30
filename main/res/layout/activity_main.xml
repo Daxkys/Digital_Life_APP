@@ -7,37 +7,24 @@
     android:orientation="vertical"
     tools:context=".Activity_main">
 
-    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+    <com.google.android.gms.ads.AdView
         android:id="@+id/banner_main"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="top"
-        ads:adSize="SMART_BANNER"
-        ads:adUnitId="ca-app-pub-9934738138092081/6307905242" />
-
-
-    <TextView
-        android:id="@+id/tv_sumAccounts"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:padding="16dp"
-        android:text="@string/total_accounts"
-        android:textStyle="bold"
-        android:textSize="16sp"
-        android:textColor="@color/primary" />
+        android:fitsSystemWindows="true"
+        app:adSize="SMART_BANNER"
+        app:adUnitId="ca-app-pub-9934738138092081/6307905242" />
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_height="match_parent">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view"
+        <fragment
+            android:id="@+id/fragment"
+            android:name="example.digitallife.Fragment_main"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="75dp"
-            android:scrollbars="vertical" />
+            android:layout_height="match_parent" />
 
         <com.google.android.material.bottomappbar.BottomAppBar
             android:id="@+id/bar"

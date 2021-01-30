@@ -31,4 +31,5 @@
     <string name="copy_user">nom d\'utilisateur copié dans le presse-papiers</string>
     <string name="copy_password">mot de passe copié dans le presse-papiers</string>
     <string name="show_hide">afficher ou masquer le mot de passe</string>
+    <string name="action_n_columns">changer le numéro de colonnes</string>
 </resources>

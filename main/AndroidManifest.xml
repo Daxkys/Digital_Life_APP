@@ -15,21 +15,28 @@
 
         <activity
             android:name=".Activity_splash"
-            android:theme="@style/SplashTheme">
+            android:theme="@style/SplashTheme"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".Activity_login" />
-        <activity android:name=".Activity_main" />
+        <activity
+            android:name=".Activity_login"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity_main"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity_account_form"
-            android:parentActivityName=".Activity_main" />
+            android:parentActivityName=".Activity_main"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity_account_show"
-            android:parentActivityName=".Activity_main" />
+            android:parentActivityName=".Activity_main"
+            android:screenOrientation="portrait" />
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"

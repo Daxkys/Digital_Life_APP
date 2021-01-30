@@ -1,6 +1,9 @@
 package example.digitallife;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -8,6 +11,7 @@ import android.view.View;
 import android.widget.SearchView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,6 +19,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.material.bottomappbar.BottomAppBar;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
@@ -38,34 +44,26 @@ public class Activity_main extends AppCompatActivity {
     private List<Account> accounts;
     private RecyclerView recyclerView;
     private DL_Adapter dl_adapter;
+    private SharedPreferences preferences;
+    private TextView tv_sumAccounts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // UI and Ad block code
         setContentView(R.layout.activity_main);
-        recyclerView = findViewById(R.id.recycler_view);
-        BottomAppBar bottomAppBar = findViewById(R.id.bar);
-        setSupportActionBar(bottomAppBar);
-
-        AdView banner = findViewById(R.id.banner_main);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        banner.loadAd(adRequest);
 
         // Initialized variables
         db = DigitalLife_DB.getInstance(this);
         accounts = db.accountDAO().getAllAccounts();
 
-        // RecyclerView block code
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 1)); //TODO: get sharedPreferences column value (1 o 2)
+        // load preferences
+        preferences = getPreferences(Context.MODE_PRIVATE);
+        int n_columns = Integer.parseInt(preferences.getString("N_COLUMNS", "1"));
 
-        /* FOR A FUTURE VERSION
-        TODO: implement ItemTouchHelper
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(createHelperCallback());
-        itemTouchHelper.attachToRecyclerView(recyclerView);
-         */
 
+        // UI and Ad block code
+        recyclerView = findViewById(R.id.recycler_view);
+        recyclerView.setLayoutManager(new GridLayoutManager(this, n_columns));
         dl_adapter = new DL_Adapter(accounts);
         dl_adapter.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,15 +73,25 @@ public class Activity_main extends AppCompatActivity {
         });
         recyclerView.setAdapter(dl_adapter);
 
-    }
+        // BottomAppBar config
+        BottomAppBar bottomAppBar = findViewById(R.id.bar);
+        setSupportActionBar(bottomAppBar);
+        tv_sumAccounts = findViewById(R.id.tv_sumAccounts);
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        dl_adapter.notifyDataSetChanged();
+        // Ad
+        AdView banner = findViewById(R.id.banner_main);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        banner.loadAd(adRequest);
 
-        TextView tv_sumAccounts = findViewById(R.id.tv_sumAccounts);
-        tv_sumAccounts.setText(getResources().getString(R.string.total_accounts).concat(": ").concat(String.valueOf(accounts.size())));
+
+        DisplayTotal();
+
+        /* FOR A FUTURE VERSION
+        TODO: implement ItemTouchHelper
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(createHelperCallback());
+        itemTouchHelper.attachToRecyclerView(recyclerView);
+         */
+
     }
 
     @Override
@@ -104,11 +112,15 @@ public class Activity_main extends AppCompatActivity {
 
             switch (requestCode) {
                 case CODE_FORM:
-
+                    // insert in DB of account
                     account = new Account(name, link, user, pass);
                     db.accountDAO().insertAccount(account);
-                    accounts.add(account);
+
+                    // cleared the list, getting all accounts again but with last append shorted
+                    accounts.clear();
+                    accounts.addAll(db.accountDAO().getAllAccounts());
                     dl_adapter.notifyDataSetChanged();
+                    DisplayTotal();
 
                     break;
 
@@ -123,6 +135,7 @@ public class Activity_main extends AppCompatActivity {
                         db.accountDAO().deleteAccount(accounts.get(position));
                         accounts.remove(position);
                         dl_adapter.notifyItemRemoved(position);
+                        DisplayTotal();
 
                     }
 
@@ -140,7 +153,7 @@ public class Activity_main extends AppCompatActivity {
                     // update DB, updated in memory and notify the recyclerView
                     db.accountDAO().updateAccount(account);
                     accounts.set(position, account);
-                    dl_adapter.notifyDataSetChanged();
+                    dl_adapter.notifyItemChanged(position);
 
                     break;
             }
@@ -176,14 +189,63 @@ public class Activity_main extends AppCompatActivity {
             startActivity(upload_login);
             finish();
             return true;
+        } else if (item.getItemId() == R.id.action_columns) {
+
+            final String[] columns = {"1", "2"};
+            final int selected = Integer.parseInt(preferences.getString("N_COLUMNS", "1")) - 1;
+
+            DialogInterface.OnClickListener cancel_dialog = new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                }
+            };
+
+            DialogInterface.OnClickListener save_nColumns = new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    int position = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString("N_COLUMNS", columns[position]);
+                    editor.apply();
+
+                    int n_columns = Integer.parseInt(columns[position]);
+
+                    recyclerView.setLayoutManager(new GridLayoutManager(Activity_main.this, n_columns));
+                }
+            };
+
+            new MaterialAlertDialogBuilder(Activity_main.this)
+                    .setTitle(R.string.action_n_columns)
+                    .setNeutralButton(R.string.gen_cancel, cancel_dialog)
+                    .setPositiveButton(R.string.save, save_nColumns)
+                    .setSingleChoiceItems(columns, selected, null)
+                    .create()
+                    .show();
+
         }
         return super.onOptionsItemSelected(item);
     }
 
-
     public void startActivity_Form(View view) {
+
+        @SuppressWarnings({"unused", "RedundantSuppression"}) FloatingActionButton view_fab = (FloatingActionButton) view;
+
         Intent intent = new Intent(view.getContext(), Activity_account_form.class);
         startActivityForResult(intent, CODE_FORM);
+
+/*        Fragment fragment_form = new Fragment_form();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment, fragment_form);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+        getSupportFragmentManager().executePendingTransactions();
+
+        bottomAppBar.setFabAlignmentMode(BottomAppBar.FAB_ALIGNMENT_MODE_END);
+        bottomAppBar.replaceMenu(R.menu.menu_empty);
+
+        view_fab.setImageResource(R.drawable.ic_save);*/
     }
 
     public void startActivity_Show(int position) {
@@ -216,8 +278,15 @@ public class Activity_main extends AppCompatActivity {
 
     private void query_search(String name) {
 
-        List<Account> filteredList = db.accountDAO().selectLike_byName("%".concat(name).concat("%"));
-        dl_adapter.filter(filteredList);
+        accounts = db.accountDAO().selectLike_byName("%".concat(name).concat("%"));
+        dl_adapter.filter(accounts);
+    }
+
+    private void DisplayTotal() {
+//        Fragment_main fragment_main = (Fragment_main) getSupportFragmentManager().findFragmentById(R.id.fragment);
+//        fragment_main.displayTotal(accounts.size());
+
+        tv_sumAccounts.setText(getResources().getString(R.string.total_accounts).concat(": ").concat(String.valueOf(accounts.size())));
     }
 
     // TODO: ItemTouchHelper - swipe

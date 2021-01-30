@@ -31,4 +31,5 @@
     <string name="copy_user">nome de usuário copiado para a área de transferência</string>
     <string name="copy_password">senha copiada para a área de transferência</string>
     <string name="show_hide">mostrar ou ocultar senha</string>
+    <string name="action_n_columns">Alterar o número de colunas</string>
 </resources>

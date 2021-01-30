@@ -31,4 +31,5 @@
     <string name="copy_user">उपयोगकर्ता नाम क्लिपबोर्ड पर कॉपी किया गया</string>
     <string name="copy_password">पासवर्ड क्लिपबोर्ड पर कॉपी किया गया</string>
     <string name="show_hide">पासवर्ड दिखाएँ या छिपाएँ</string>
+    <string name="action_n_columns">कॉलम की संख्या बदलें</string>
 </resources>

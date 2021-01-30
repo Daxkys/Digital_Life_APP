@@ -31,4 +31,5 @@
     <string name="copy_user">用户名已复制到剪贴板</string>
     <string name="copy_password">密码复制到剪贴板</string>
     <string name="show_hide">显示或隐藏密码</string>
+    <string name="action_n_columns">更改列数</string>
 </resources>

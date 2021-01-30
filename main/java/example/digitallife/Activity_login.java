@@ -13,13 +13,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -155,16 +155,15 @@ public class Activity_login extends AppCompatActivity {
         String main_key = et_login.getText().toString();
 
         if (main_key.length() < 4) {
-            Toast.makeText(this, R.string.main_key_must_length, Toast.LENGTH_SHORT).show();
-            // TODO: Snackbar.make(b_setLogin, R.string.main_key_must_length, Snackbar.LENGTH_SHORT).show();
+            et_login.setError(getResources().getString(R.string.main_key_must_length));
         } else {
+            // SHAVED NEW MAIN KEY
             SharedPreferences.Editor editor = login_preference.edit();
             editor.putBoolean(FIRST_TIME, false);
             editor.putString(MAIN_KEY, main_key);
             editor.apply();
 
-            Toast.makeText(this, R.string.main_key_set, Toast.LENGTH_SHORT).show();
-            // TODO: Snackbar.make(b_setLogin, R.string.main_key_set, Snackbar.LENGTH_SHORT).show();
+            Snackbar.make(b_setLogin, R.string.main_key_set, Snackbar.LENGTH_SHORT).setAnchorView(et_login).show();
 
             // MAIN KEY STABILIZED: instructions updated, biometric is enabled and principal button now log in
             tv_firstLogin.setText(R.string.main_key_after_set);
@@ -194,8 +193,7 @@ public class Activity_login extends AppCompatActivity {
             }
         } else {
 
-            Toast.makeText(this, R.string.main_key_error, Toast.LENGTH_SHORT).show();
-            // TODO: Snackbar.make(view, R.string.main_key_error, Snackbar.LENGTH_SHORT).show();
+            et_login.setError(getResources().getString(R.string.main_key_error));
             et_login.setText("");
         }
     }

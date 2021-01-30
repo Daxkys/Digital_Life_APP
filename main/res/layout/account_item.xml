@@ -3,37 +3,37 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:orientation="vertical"
-    android:layout_marginTop="8dp"
-    android:layout_marginBottom="8dp"
-    android:layout_marginLeft="16dp"
-    android:layout_marginRight="16dp"
-    android:background="@drawable/recycler_item">
+    android:gravity="bottom"
+    android:paddingTop="8dp"
+    android:paddingLeft="32dp"
+    android:paddingRight="32dp"
+    android:paddingBottom="0dp"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/tv_account"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
         android:text="@string/account"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        style="@style/Athena.Headline6" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="4dp" />
 
     <TextView
         android:id="@+id/tv_username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
         android:text="@string/username"
-        android:textColor="@color/white"
-        android:textSize="14sp" />
+        android:textColor="@color/primary"
+        style="@style/Athena.Subtitle1" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="8dp" />
 
 </LinearLayout>

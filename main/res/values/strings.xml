@@ -37,4 +37,5 @@
     <string name="copy_user">username copied to the clipboard</string>
     <string name="copy_password">password copied to the clipboard</string>
     <string name="show_hide">show or hide password</string>
+    <string name="action_n_columns">Change number of columns</string>
 </resources>

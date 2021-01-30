@@ -2,11 +2,8 @@ package example.digitallife;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.InputType;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -57,7 +54,7 @@ public class Activity_account_form extends AppCompatActivity {
     }
 
     @Override
-    public void onRestoreInstanceState(Bundle state) {
+    public void onRestoreInstanceState(@NonNull Bundle state) {
         super.onRestoreInstanceState(state);
         et_name.setText(state.getString(NAME));
         et_user.setText(state.getString(USER));
@@ -65,6 +62,7 @@ public class Activity_account_form extends AppCompatActivity {
         et_link.setText(state.getString(LINK));
     }
 
+    @SuppressWarnings({"unused", "RedundantSuppression"})
     public void buttonOK(View view) {
         String name = et_name.getText().toString();
         String user = et_user.getText().toString();
@@ -72,7 +70,7 @@ public class Activity_account_form extends AppCompatActivity {
         String link = et_link.getText().toString();
 
         if (name.isEmpty()) {
-            Toast.makeText(view.getContext(), R.string.fail_input_account, Toast.LENGTH_LONG).show();
+            et_name.setError(getResources().getString(R.string.fail_input_account));
         } else {
             Intent intent = getIntent();
             intent.putExtra(NAME, name);
@@ -82,17 +80,5 @@ public class Activity_account_form extends AppCompatActivity {
             setResult(RESULT_OK, intent);
             finish();
         }
-    }
-
-    public void showHide_password(View view) {
-        if (et_pass.getInputType() == InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD) {
-            et_pass.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-            ((ImageButton) view).setImageResource(R.drawable.ic_show);
-        } else {
-            et_pass.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
-            ((ImageButton) view).setImageResource(R.drawable.ic_hide);
-        }
-
-        et_pass.setSelection(et_pass.length());
     }
 }

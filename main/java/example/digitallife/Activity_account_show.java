@@ -14,7 +14,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -23,6 +22,7 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 public class Activity_account_show extends AppCompatActivity {
 
@@ -72,16 +72,14 @@ public class Activity_account_show extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     clipboardManager.setPrimaryClip(ClipData.newPlainText("USERNAME", tv_user.getText()));
-                    Toast.makeText(Activity_account_show.this, R.string.copy_user, Toast.LENGTH_SHORT).show();
-                    // TODO: Snackbar.make(fab, R.string.copy_user, Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(fab, R.string.copy_user, Snackbar.LENGTH_SHORT).setAnchorView(fab).show();
                 }
             });
             ib_copy_pass.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     clipboardManager.setPrimaryClip(ClipData.newPlainText("PASSWORD", tv_pass.getText()));
-                    Toast.makeText(Activity_account_show.this, R.string.copy_password, Toast.LENGTH_SHORT).show();
-                    // TODO: Snackbar.make(fab, R.string.copy_password, Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(fab, R.string.copy_password, Snackbar.LENGTH_SHORT).setAnchorView(fab).show();
                 }
             });
         }

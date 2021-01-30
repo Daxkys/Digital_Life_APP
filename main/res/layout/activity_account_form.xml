@@ -34,6 +34,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/account"
+                app:errorEnabled="true"
                 app:counterEnabled="true"
                 app:counterMaxLength="20"
                 app:endIconMode="clear_text">
@@ -44,7 +45,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="textCapWords"
                     android:singleLine="true"
-                    android:textColor="@color/black" />
+                    style="@style/Athena.Body1" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -63,7 +64,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="textWebEditText"
                     android:singleLine="true"
-                    android:textColor="@color/black" />
+                    style="@style/Athena.Body1" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -74,15 +75,14 @@
                 android:hint="@string/username"
                 app:endIconMode="clear_text"
                 app:startIconContentDescription="@string/username"
-                app:startIconDrawable="@drawable/ic_user"
-                android:textColor="@color/black">
+                app:startIconDrawable="@drawable/ic_user">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_user"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:singleLine="true"
-                    android:textColor="@color/black" />
+                    style="@style/Athena.Body1" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -102,7 +102,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
                     android:singleLine="true"
-                    android:textColor="@color/black" />
+                    style="@style/Athena.Body1" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
