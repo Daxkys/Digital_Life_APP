@@ -17,6 +17,7 @@
         android:gravity="center"
         android:text="@string/account"
         android:textStyle="bold"
+        android:textColor="@color/primary"
         style="@style/Athena.Headline6" />
 
     <Space
@@ -30,7 +31,7 @@
         android:gravity="center"
         android:text="@string/username"
         android:textColor="@color/primary"
-        style="@style/Athena.Subtitle1" />
+        style="@style/Athena.Body2" />
 
     <Space
         android:layout_width="match_parent"

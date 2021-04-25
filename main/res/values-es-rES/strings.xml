@@ -38,4 +38,5 @@
     <string name="copy_password">Contraseña copiada al portapapeles</string>
     <string name="show_hide">mostrar o ocultar contraseña</string>
     <string name="action_n_columns">Cambiar número de columnas</string>
+    <string name="password_strong">Robustez de contraseña:</string>
 </resources>

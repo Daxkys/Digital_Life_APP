@@ -32,4 +32,5 @@
     <string name="copy_password">senha copiada para a área de transferência</string>
     <string name="show_hide">mostrar ou ocultar senha</string>
     <string name="action_n_columns">Alterar o número de colunas</string>
+    <string name="password_strong">Robustez da senha:</string>
 </resources>

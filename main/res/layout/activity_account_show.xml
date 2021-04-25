@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/account"
-                android:textColor="@color/white_marble"
+                android:textColor="@color/white"
                 style="@style/Athena.Headline4" />
 
             <Space
@@ -51,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/username"
-                android:textColor="@color/white_marble"
+                android:textColor="@color/white"
                 style="@style/Athena.Body1" />
 
             <Space
@@ -64,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/password"
-                android:textColor="@color/white_marble"
+                android:textColor="@color/white"
                 style="@style/Athena.Body1" />
 
         </LinearLayout>
@@ -102,7 +102,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        app:fabAlignmentMode="end"
         app:fabAnimationMode="slide"
         app:hideOnScroll="false"
         app:menu="@menu/menu_account_show" />

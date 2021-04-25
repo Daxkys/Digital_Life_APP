@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <color name="primary">@color/green_oliveDrab</color>
-    <color name="secondary">@color/triadic1</color>
+    <color name="primary">@color/triadic1</color>
+    <color name="secondary">@color/green_oliveDrab</color>
     <color name="accent">@color/complementary</color>
 
     <color name="black">#000000</color>
@@ -9,7 +9,6 @@
 
     <!-- brand colors -->
     <color name="green_oliveDrab">#6B8E23</color>
-    <color name="white_marble">#FFFFF0</color>
     <color name="complementary">#47238e</color>
     <color name="analogous1" tools:keep="@color/analogous1">#8e7c23</color>
     <color name="analogous2" tools:keep="@color/analogous2">#358e23</color>
