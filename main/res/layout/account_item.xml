@@ -2,19 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_gravity="center"
-    android:gravity="bottom"
-    android:paddingTop="8dp"
-    android:paddingLeft="32dp"
-    android:paddingRight="32dp"
-    android:paddingBottom="0dp"
+    android:layout_marginHorizontal="32dp"
+    android:layout_marginVertical="16dp"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/tv_account"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:text="@string/account"
         android:textStyle="bold"
         android:textColor="@color/primary"
@@ -28,13 +23,8 @@
         android:id="@+id/tv_username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:text="@string/username"
         android:textColor="@color/primary"
         style="@style/Athena.Body2" />
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="8dp" />
 
 </LinearLayout>

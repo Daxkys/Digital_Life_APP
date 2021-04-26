@@ -6,20 +6,45 @@
     android:orientation="vertical"
     tools:context=".Fragment_main">
 
-    <TextView
-        android:id="@+id/tv_sumAccounts"
-        android:layout_width="match_parent"
+    <LinearLayout
         android:layout_height="wrap_content"
+        android:layout_width="match_parent"
         android:gravity="center"
-        android:padding="16dp"
-        android:text="@string/total_accounts"
-        style="@style/Athena.Headline5" />
+        android:paddingVertical="8dp"
+        android:paddingHorizontal="16dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:text="@string/app_name"
+            style="@style/Athena.Headline6" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@mipmap/ic_launcher"
+            android:contentDescription="@string/app_name" />
+
+        <TextView
+            android:id="@+id/tv_sumAccounts"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:text="@string/total_accounts"
+            style="@style/Athena.Headline6" />
+
+
+    </LinearLayout>
 
     <View
         android:id="@+id/topDivider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/accent" />
+        android:background="@color/secondary" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
