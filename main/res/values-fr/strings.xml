@@ -33,4 +33,5 @@
     <string name="show_hide">afficher ou masquer le mot de passe</string>
     <string name="action_n_columns">changer le numéro de colonnes</string>
     <string name="password_strong">Robustesse du mot de passe:</string>
+    <string name="rate_app">Évaluer l\'application dans le Play Store</string>
 </resources>

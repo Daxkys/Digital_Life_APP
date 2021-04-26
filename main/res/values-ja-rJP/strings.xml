@@ -33,4 +33,5 @@
     <string name="show_hide">パスワードの表示または非表示</string>
     <string name="action_n_columns">列数を変更する</string>
     <string name="password_strong">パスワードの堅牢性：</string>
+    <string name="rate_app">Playストアでアプリを評価する</string>
 </resources>

@@ -8,10 +8,17 @@
         android:title="@android:string/search_go"
         app:actionViewClass="android.widget.SearchView"
         app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/rate_app"
+        android:title="@string/rate_app"
+        app:showAsAction="never" />
+
     <item
         android:id="@+id/action_change_key"
         android:title="@string/main_key_change"
         app:showAsAction="never" />
+
     <item
         android:id="@+id/action_columns"
         android:title="@string/action_n_columns"

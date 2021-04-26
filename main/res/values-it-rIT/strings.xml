@@ -33,4 +33,5 @@
     <string name="show_hide">mostrare o nascondere la parola d\'ordine</string>
     <string name="action_n_columns">Modifica il numero di colonne</string>
     <string name="password_strong">Robustezza della password:</string>
+    <string name="rate_app">Valuta l\'app nel Play Store</string>
 </resources>

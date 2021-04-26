@@ -39,4 +39,5 @@
     <string name="show_hide">show or hide password</string>
     <string name="action_n_columns">Change number of columns</string>
     <string name="password_strong">Password robustness:</string>
+    <string name="rate_app">Rate app in Play Store</string>
 </resources>
