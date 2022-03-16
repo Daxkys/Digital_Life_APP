@@ -22,6 +22,8 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.Objects;
+
 public class Activity_account_show extends AppCompatActivity {
 
     private static final String NAME = "NAME";
@@ -113,7 +115,7 @@ public class Activity_account_show extends AppCompatActivity {
                 return true;
 
             case R.id.action_go_web:
-                openWebPage(getIntent().getStringExtra(LINK));
+                openWebPage(Objects.requireNonNull(getIntent().getStringExtra(LINK)));
                 return true;
 
             default:

@@ -20,6 +20,7 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.Objects;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -155,7 +156,7 @@ public class Activity_login extends AppCompatActivity {
 
         String s_login = et_login.getText().toString();
 
-        if (login_preference.getString(MAIN_KEY, "").equals(s_login) || view == ib_biometric) {
+        if (Objects.requireNonNull(login_preference.getString(MAIN_KEY, "")).equals(s_login) || view == ib_biometric) {
             Intent toMain = new Intent(this, Activity_main.class);
             startActivity(toMain);
             finish();

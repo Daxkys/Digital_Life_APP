@@ -24,6 +24,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
+import java.util.Objects;
 
 import example.digitallife.database.Account;
 import example.digitallife.database.DigitalLife_DB;
@@ -61,7 +62,7 @@ public class Activity_main extends AppCompatActivity {
 
         // load preferences
         preferences = getPreferences(Context.MODE_PRIVATE);
-        int n_columns = Integer.parseInt(preferences.getString("N_COLUMNS", "1"));
+        int n_columns = Integer.parseInt(Objects.requireNonNull(preferences.getString("N_COLUMNS", "1")));
 
 
         // UI and Ad block code
@@ -119,7 +120,7 @@ public class Activity_main extends AppCompatActivity {
 
                 case CODE_SHOW:
 
-                    if (action.equals("UPDATE")) {
+                    if (Objects.requireNonNull(action).equals("UPDATE")) {
 
                         startActivity_Edit(position);
 
@@ -185,7 +186,7 @@ public class Activity_main extends AppCompatActivity {
         } else if (item.getItemId() == R.id.action_columns) {
 
             final String[] columns = {"1", "2"};
-            final int selected = Integer.parseInt(preferences.getString("N_COLUMNS", "1")) - 1;
+            final int selected = Integer.parseInt(Objects.requireNonNull(preferences.getString("N_COLUMNS", "1"))) - 1;
 
             DialogInterface.OnClickListener cancel_dialog = (dialog, which) -> dialog.cancel();
 
@@ -275,28 +276,4 @@ public class Activity_main extends AppCompatActivity {
 
         tv_sumAccounts.setText(getResources().getString(R.string.total_accounts).concat(": ").concat(String.valueOf(accounts.size())));
     }
-
-    // TODO: ItemTouchHelper - swipe
-    /*
-    private ItemTouchHelper.Callback createHelperCallback() {
-        return new ItemTouchHelper.SimpleCallback(
-                0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
-
-            @Override
-            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
-                return false;
-            }
-
-            @Override
-            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                if (direction == ItemTouchHelper.RIGHT) {
-                    update_item(viewHolder.getAdapterPosition());
-                } else {
-                    delete_item(viewHolder.getAdapterPosition());
-                }
-            }
-        };
-    }
-
-     */
 }
