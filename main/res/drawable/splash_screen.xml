@@ -3,12 +3,15 @@
 
     <item>
         <shape>
-            <solid android:color="@color/ic_launcher_background" />
+            <gradient
+                android:startColor="@color/greece_flag_blue"
+                android:endColor="@color/athens_flag_blue"
+                android:angle="-45" />
         </shape>
     </item>
 
     <item
-        android:drawable="@drawable/ic_launcher_foreground"
+        android:drawable="@drawable/logo_athena"
         android:gravity="center" />
 
 </layer-list>

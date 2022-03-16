@@ -2,7 +2,10 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
 
-    <solid android:color="@color/primary" />
+    <gradient
+        android:startColor="@color/greece_flag_blue"
+        android:endColor="@color/athens_flag_blue"
+        android:angle="-45" />
 
     <corners android:radius="12dp" />
 
