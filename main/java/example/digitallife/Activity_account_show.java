@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -18,8 +17,6 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -45,11 +42,6 @@ public class Activity_account_show extends AppCompatActivity {
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
 
-        // UI block code
-        AdView banner = findViewById(R.id.banner_account_show);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        banner.loadAd(adRequest);
-
         // BottomAppBar config
         BottomAppBar bottomAppBar = findViewById(R.id.bar);
         setSupportActionBar(bottomAppBar);
@@ -71,19 +63,13 @@ public class Activity_account_show extends AppCompatActivity {
         final ClipboardManager clipboardManager = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
 
         if (clipboardManager != null) {
-            ib_copy_user.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    clipboardManager.setPrimaryClip(ClipData.newPlainText("USERNAME", tv_user.getText()));
-                    Snackbar.make(fab, R.string.copy_user, Snackbar.LENGTH_SHORT).setAnchorView(fab).show();
-                }
+            ib_copy_user.setOnClickListener(view -> {
+                clipboardManager.setPrimaryClip(ClipData.newPlainText("USERNAME", tv_user.getText()));
+                Snackbar.make(fab, R.string.copy_user, Snackbar.LENGTH_SHORT).setAnchorView(fab).show();
             });
-            ib_copy_pass.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    clipboardManager.setPrimaryClip(ClipData.newPlainText("PASSWORD", tv_pass.getText()));
-                    Snackbar.make(fab, R.string.copy_password, Snackbar.LENGTH_SHORT).setAnchorView(fab).show();
-                }
+            ib_copy_pass.setOnClickListener(view -> {
+                clipboardManager.setPrimaryClip(ClipData.newPlainText("PASSWORD", tv_pass.getText()));
+                Snackbar.make(fab, R.string.copy_password, Snackbar.LENGTH_SHORT).setAnchorView(fab).show();
             });
         }
 
@@ -113,19 +99,13 @@ public class Activity_account_show extends AppCompatActivity {
                 new MaterialAlertDialogBuilder(this)
                         .setTitle(R.string.ask_del_account)
                         .setMessage(R.string.permanent_action)
-                        .setNegativeButton(R.string.gen_cancel, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
+                        .setNegativeButton(R.string.gen_cancel, (dialog, which) -> {
 
-                            }
                         })
-                        .setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                intent.putExtra("ACTION", "DELETE");
-                                setResult(RESULT_OK, intent);
-                                finish();
-                            }
+                        .setPositiveButton(R.string.delete, (dialog, which) -> {
+                            intent.putExtra("ACTION", "DELETE");
+                            setResult(RESULT_OK, intent);
+                            finish();
                         })
                         .show();
 

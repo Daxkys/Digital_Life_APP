@@ -1,24 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".Activity_main">
-
-    <com.google.android.gms.ads.AdView
-        android:id="@+id/banner_main"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top"
-        android:fitsSystemWindows="true"
-        app:adSize="SMART_BANNER"
-        app:adUnitId="ca-app-pub-9934738138092081/6307905242" />
-
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
         <fragment
             android:id="@+id/fragment"
@@ -44,5 +30,4 @@
             app:layout_anchor="@id/bar"
             app:srcCompat="@drawable/ic_add" />
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
-</LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

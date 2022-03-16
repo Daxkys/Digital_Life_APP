@@ -1,5 +1,6 @@
 package example.digitallife;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -18,8 +19,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -69,24 +68,13 @@ public class Activity_main extends AppCompatActivity {
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new GridLayoutManager(this, n_columns));
         dl_adapter = new DL_Adapter(accounts);
-        dl_adapter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity_Show(recyclerView.getChildAdapterPosition(view));
-            }
-        });
+        dl_adapter.setOnClickListener(view -> startActivity_Show(recyclerView.getChildAdapterPosition(view)));
         recyclerView.setAdapter(dl_adapter);
 
         // BottomAppBar config
         BottomAppBar bottomAppBar = findViewById(R.id.bar);
         setSupportActionBar(bottomAppBar);
         tv_sumAccounts = findViewById(R.id.tv_sumAccounts);
-
-        // Ad
-        AdView banner = findViewById(R.id.banner_main);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        banner.loadAd(adRequest);
-
 
         DisplayTotal();
 
@@ -98,6 +86,7 @@ public class Activity_main extends AppCompatActivity {
 
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -198,25 +187,17 @@ public class Activity_main extends AppCompatActivity {
             final String[] columns = {"1", "2"};
             final int selected = Integer.parseInt(preferences.getString("N_COLUMNS", "1")) - 1;
 
-            DialogInterface.OnClickListener cancel_dialog = new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.cancel();
-                }
-            };
+            DialogInterface.OnClickListener cancel_dialog = (dialog, which) -> dialog.cancel();
 
-            DialogInterface.OnClickListener save_nColumns = new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    int position = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
-                    SharedPreferences.Editor editor = preferences.edit();
-                    editor.putString("N_COLUMNS", columns[position]);
-                    editor.apply();
+            DialogInterface.OnClickListener save_nColumns = (dialog, which) -> {
+                int position = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("N_COLUMNS", columns[position]);
+                editor.apply();
 
-                    int n_columns = Integer.parseInt(columns[position]);
+                int n_columns = Integer.parseInt(columns[position]);
 
-                    recyclerView.setLayoutManager(new GridLayoutManager(Activity_main.this, n_columns));
-                }
+                recyclerView.setLayoutManager(new GridLayoutManager(Activity_main.this, n_columns));
             };
 
             new MaterialAlertDialogBuilder(Activity_main.this)

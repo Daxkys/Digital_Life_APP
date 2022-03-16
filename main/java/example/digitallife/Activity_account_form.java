@@ -13,9 +13,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-
 public class Activity_account_form extends AppCompatActivity {
 
     private static final String NAME = "NAME";
@@ -36,10 +33,6 @@ public class Activity_account_form extends AppCompatActivity {
         setContentView(R.layout.activity_account_form);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
-
-        AdView banner = findViewById(R.id.banner_account_form);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        banner.loadAd(adRequest);
 
         et_name = findViewById(R.id.et_name);
         et_user = findViewById(R.id.et_user);

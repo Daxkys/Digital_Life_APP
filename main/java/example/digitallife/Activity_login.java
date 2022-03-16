@@ -1,7 +1,6 @@
 package example.digitallife;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -18,7 +17,6 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -61,11 +59,6 @@ public class Activity_login extends AppCompatActivity {
         // control if main key is stabilized
         is_mainKey_stabilized();
 
-        // Ad Banner
-        AdView banner = findViewById(R.id.banner_login);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        banner.loadAd(adRequest);
-
         // Interstitial Ad
         interstitial_login = new InterstitialAd(this);
         interstitial_login.setAdUnitId("ca-app-pub-9934738138092081/2614553925");
@@ -92,29 +85,16 @@ public class Activity_login extends AppCompatActivity {
             final BiometricPrompt biometricPrompt = new BiometricPrompt.Builder(this)
                     .setTitle(getString(R.string.biometric_verification))
                     .setDescription(getString(R.string.biometric_desc))
-                    .setNegativeButton(getString(R.string.gen_cancel), executor, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
+                    .setNegativeButton(getString(R.string.gen_cancel), executor, (dialog, which) -> {
 
-                        }
                     }).build();
 
-            ib_biometric.setOnClickListener(new View.OnClickListener() {
+            ib_biometric.setOnClickListener(v -> biometricPrompt.authenticate(new CancellationSignal(), executor, new BiometricPrompt.AuthenticationCallback() {
                 @Override
-                public void onClick(View v) {
-                    biometricPrompt.authenticate(new CancellationSignal(), executor, new BiometricPrompt.AuthenticationCallback() {
-                        @Override
-                        public void onAuthenticationSucceeded(BiometricPrompt.AuthenticationResult result) {
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    login(ib_biometric);
-                                }
-                            });
-                        }
-                    });
+                public void onAuthenticationSucceeded(BiometricPrompt.AuthenticationResult result) {
+                    runOnUiThread(() -> login(ib_biometric));
                 }
-            });
+            }));
 
         }
     }
@@ -136,12 +116,7 @@ public class Activity_login extends AppCompatActivity {
 
             // principal button changed action to set the main key
             b_setLogin.setText(R.string.save);
-            b_setLogin.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    setMainKey();
-                }
-            });
+            b_setLogin.setOnClickListener(view -> setMainKey());
 
         } else {
 
@@ -172,12 +147,7 @@ public class Activity_login extends AppCompatActivity {
             tv_firstLogin.setText(R.string.main_key_after_set);
             ib_biometric.setVisibility(View.VISIBLE);
             b_setLogin.setText(R.string.enter);
-            b_setLogin.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    login(view);
-                }
-            });
+            b_setLogin.setOnClickListener(this::login);
         }
     }
 

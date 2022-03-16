@@ -15,17 +15,13 @@ public class Activity_splash extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // DEPRECATED
-        //MobileAds.initialize(this, "ca-app-pub-9934738138092081~2013437011");
+        //Call the function to initialize AdMob SDK
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
             public void onInitializationComplete(InitializationStatus initializationStatus) {
-
+                startActivity(new Intent(Activity_splash.this, Activity_login.class));
+                finish();
             }
         });
-
-        startActivity(new Intent(Activity_splash.this, Activity_login.class));
-        finish();
-
     }
 }

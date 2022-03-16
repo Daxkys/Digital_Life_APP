@@ -1,5 +1,6 @@
 package example.digitallife;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,6 +57,7 @@ public class DL_Adapter extends RecyclerView.Adapter<DL_Adapter.DLViewHolder> im
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void filter(List<Account> filteredList) {
         accounts = filteredList;
         notifyDataSetChanged();
