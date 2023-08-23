@@ -3,10 +3,7 @@
 
     <item>
         <shape>
-            <gradient
-                android:startColor="@color/greece_flag_blue"
-                android:endColor="@color/athens_flag_blue"
-                android:angle="-45" />
+            <solid android:color="@color/primary" />
         </shape>
     </item>
 
