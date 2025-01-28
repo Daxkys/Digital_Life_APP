@@ -13,7 +13,6 @@
         android:paddingBottom="4dp"
         android:text="@string/account"
         android:textStyle="bold"
-        android:textColor="@color/primary"
         style="@style/Athena.Headline6" />
 
     <TextView
@@ -21,7 +20,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/username"
-        android:textColor="@color/primary"
         style="@style/Athena.Body2" />
 
 </LinearLayout>

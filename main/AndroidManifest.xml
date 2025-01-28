@@ -8,32 +8,25 @@
         android:label="@string/app_name"
         android:icon="@mipmap/ic_launcher"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:theme="@style/AppTheme"
-        android:supportsRtl="false"
-        android:allowBackup="false">
+        android:theme="@style/AppTheme">
 
         <activity
-            android:name=".Activity_splash"
-            android:theme="@style/SplashTheme"
+            android:name=".Activity_login"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".Activity_login" />
-        <activity android:name=".Activity_main" />
+        <activity
+            android:name=".Activity_main"
+            android:parentActivityName=".Activity_login" />
         <activity
             android:name=".Activity_account_form"
             android:parentActivityName=".Activity_main" />
         <activity
             android:name=".Activity_account_show"
             android:parentActivityName=".Activity_main" />
-
-        <meta-data
-            android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-9934738138092081~2013437011" />
     </application>
 
 </manifest>

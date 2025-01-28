@@ -1,26 +1,20 @@
 package example.digitallife;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.WindowManager;
 import android.widget.SearchView;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomappbar.BottomAppBar;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
@@ -46,7 +40,6 @@ public class Activity_main extends AppCompatActivity {
     private List<Account> accounts;
     private RecyclerView recyclerView;
     private DL_Adapter dl_adapter;
-    private SharedPreferences preferences;
     private TextView tv_sumAccounts;
 
     @Override
@@ -56,35 +49,25 @@ public class Activity_main extends AppCompatActivity {
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
 
-        // Initialized variables
+        // DATABASE
         db = DigitalLife_DB.getInstance(this);
         accounts = db.accountDAO().getAllAccounts();
 
-        // load preferences
-        preferences = getPreferences(Context.MODE_PRIVATE);
-        int n_columns = Integer.parseInt(Objects.requireNonNull(preferences.getString("N_COLUMNS", "1")));
-
-
-        // UI and Ad block code
-        recyclerView = findViewById(R.id.recycler_view);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, n_columns));
-        dl_adapter = new DL_Adapter(accounts);
-        dl_adapter.setOnClickListener(view -> startActivity_Show(recyclerView.getChildAdapterPosition(view)));
-        recyclerView.setAdapter(dl_adapter);
-
-        // BottomAppBar config
+        // UI
+        tv_sumAccounts = findViewById(R.id.tv_sumAccounts);
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(v -> startActivityForm());
         BottomAppBar bottomAppBar = findViewById(R.id.bar);
         setSupportActionBar(bottomAppBar);
-        tv_sumAccounts = findViewById(R.id.tv_sumAccounts);
+
+        // RecyclerView
+        recyclerView = findViewById(R.id.recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        dl_adapter = new DL_Adapter(accounts);
+        dl_adapter.setOnClickListener(view -> startActivityShow(recyclerView.getChildAdapterPosition(view)));
+        recyclerView.setAdapter(dl_adapter);
 
         DisplayTotal();
-
-        /* FOR A FUTURE VERSION
-        TODO: implement ItemTouchHelper
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(createHelperCallback());
-        itemTouchHelper.attachToRecyclerView(recyclerView);
-         */
-
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -101,6 +84,7 @@ public class Activity_main extends AppCompatActivity {
             String user = data.getStringExtra(USER);
             String pass = data.getStringExtra(PASS);
             String link = data.getStringExtra(LINK);
+            // long last_edit = Calendar.getInstance().getTimeInMillis();
 
             String action = data.getStringExtra("ACTION");
 
@@ -122,7 +106,7 @@ public class Activity_main extends AppCompatActivity {
 
                     if (Objects.requireNonNull(action).equals("UPDATE")) {
 
-                        startActivity_Edit(position);
+                        startActivityEdit(position);
 
                     } else if (action.equals("DELETE")) {
 
@@ -179,78 +163,21 @@ public class Activity_main extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_change_key) {
             Intent upload_login = new Intent(this, Activity_login.class);
-            upload_login.putExtra(Activity_login.RESET_KEY, true);
+            upload_login.putExtra(Activity_login.EXTRA_RESET_KEY, true);
             startActivity(upload_login);
             finish();
             return true;
-        } else if (item.getItemId() == R.id.action_columns) {
-
-            final String[] columns = {"1", "2"};
-            final int selected = Integer.parseInt(Objects.requireNonNull(preferences.getString("N_COLUMNS", "1"))) - 1;
-
-            DialogInterface.OnClickListener cancel_dialog = (dialog, which) -> dialog.cancel();
-
-            DialogInterface.OnClickListener save_nColumns = (dialog, which) -> {
-                int position = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putString("N_COLUMNS", columns[position]);
-                editor.apply();
-
-                int n_columns = Integer.parseInt(columns[position]);
-
-                recyclerView.setLayoutManager(new GridLayoutManager(Activity_main.this, n_columns));
-            };
-
-            new MaterialAlertDialogBuilder(Activity_main.this)
-                    .setTitle(R.string.action_n_columns)
-                    .setNeutralButton(R.string.gen_cancel, cancel_dialog)
-                    .setPositiveButton(R.string.save, save_nColumns)
-                    .setSingleChoiceItems(columns, selected, null)
-                    .create()
-                    .show();
-
         } else if (item.getItemId() == R.id.rate_app) {
             startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=" + "example.digitallife")));
         }
         return super.onOptionsItemSelected(item);
     }
 
-    public void startActivity_Form(View view) {
-
-        @SuppressWarnings({"unused", "RedundantSuppression"}) FloatingActionButton view_fab = (FloatingActionButton) view;
-
-        Intent intent = new Intent(view.getContext(), Activity_account_form.class);
-        startActivityForResult(intent, CODE_FORM);
-
-/*        Fragment fragment_form = new Fragment_form();
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fragment, fragment_form);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
-        getSupportFragmentManager().executePendingTransactions();
-
-        bottomAppBar.setFabAlignmentMode(BottomAppBar.FAB_ALIGNMENT_MODE_END);
-        bottomAppBar.replaceMenu(R.menu.menu_empty);
-
-        view_fab.setImageResource(R.drawable.ic_save);*/
+    public void startActivityForm() {
+        startActivityForResult(new Intent(this, Activity_account_form.class), CODE_FORM);
     }
 
-    public void startActivity_Show(int position) {
-        Account account = accounts.get(position);
-
-        Intent intent = new Intent(this, Activity_account_show.class);
-        intent.putExtra(POSITION, position);
-        intent.putExtra(ID_ACCOUNT, account.getId());
-        intent.putExtra(NAME, account.getName());
-        intent.putExtra(USER, account.getUser());
-        intent.putExtra(PASS, account.getPass());
-        intent.putExtra(LINK, account.getLink());
-
-        startActivityForResult(intent, CODE_SHOW);
-    }
-
-    public void startActivity_Edit(int position) {
+    public void startActivityEdit(int position) {
         Account account = accounts.get(position);
 
         Intent intent = new Intent(this, Activity_account_form.class);
@@ -264,6 +191,20 @@ public class Activity_main extends AppCompatActivity {
         startActivityForResult(intent, CODE_EDIT);
     }
 
+    public void startActivityShow(int position) {
+        Account account = accounts.get(position);
+
+        Intent intent = new Intent(this, Activity_account_show.class);
+        intent.putExtra(POSITION, position);
+        intent.putExtra(ID_ACCOUNT, account.getId());
+        intent.putExtra(NAME, account.getName());
+        intent.putExtra(USER, account.getUser());
+        intent.putExtra(PASS, account.getPass());
+        intent.putExtra(LINK, account.getLink());
+
+        startActivityForResult(intent, CODE_SHOW);
+    }
+
     private void query_search(String name) {
 
         accounts = db.accountDAO().selectLike_byName("%".concat(name).concat("%"));
@@ -271,9 +212,6 @@ public class Activity_main extends AppCompatActivity {
     }
 
     private void DisplayTotal() {
-//        Fragment_main fragment_main = (Fragment_main) getSupportFragmentManager().findFragmentById(R.id.fragment);
-//        fragment_main.displayTotal(accounts.size());
-
         tv_sumAccounts.setText(getResources().getString(R.string.total_accounts).concat(": ").concat(String.valueOf(accounts.size())));
     }
 }

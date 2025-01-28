@@ -4,12 +4,7 @@
     <color name="black">#000000</color>
     <color name="white">#ffffff</color>
 
-    <color name="primary">@color/greece_flag_blue</color>
-    <color name="secondary">@color/athens_flag_blue</color>
-    <color name="accent">@color/athens_flag_gold</color>
-    <color name="error">@color/athens_flag_red</color>
-
-    <!-- brand colors -->
+    <!-- flags colors -->
     <color name="greece_flag_blue">#0D5EAF</color>
     <color name="athens_flag_blue">#050490</color>
     <color name="athens_flag_red">#bd1b19</color>

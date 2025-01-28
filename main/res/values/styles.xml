@@ -1,36 +1,21 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme -->
-
-    <!-- TODO: change to Theme.MaterialComponents.DayNight -->
-    <style name="AppTheme" parent="Theme.MaterialComponents.NoActionBar">
-        <item name="colorPrimary">@color/primary</item>
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/greece_flag_blue</item>
         <item name="colorOnPrimary">@color/white</item>
-        <item name="colorPrimaryVariant">@color/accent</item>
-
-        <item name="colorSecondary">@color/secondary</item>
+        <item name="colorSecondary">@color/greece_flag_blue</item>
         <item name="colorOnSecondary">@color/white</item>
-        <item name="colorSecondaryVariant">@color/accent</item>
-
-        <item name="android:colorBackground">@color/white</item>
-        <item name="colorOnBackground">@color/black</item>
-
-        <item name="colorSurface">@color/primary</item>
-        <item name="colorOnSurface">@color/black</item>
-
-        <item name="colorError">@color/error</item>
-        <item name="colorOnError">@color/white</item>
-
-        <item name="materialAlertDialogTheme">@style/Athena.MaterialAlertDialog</item>
     </style>
 
-    <!-- Splash screen -->
-    <style name="SplashTheme" parent="Theme.MaterialComponents.NoActionBar">
-        <item name="android:windowBackground">@drawable/splash_screen</item>
+    <style name="fabDiamond" parent="">
+        <item name="cornerFamily">cut</item>
+        <item name="cornerSize">8dp</item>
     </style>
 
-    <style name="Athena.MaterialAlertDialog" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
-        <item name="colorSurface">@color/white</item>
+    <style name="BottomAppBarTheme" parent="Widget.MaterialComponents.BottomAppBar.Colored">
+        <item name="colorControlNormal">@color/greece_flag_blue</item>
+        <item name="iconTint">@color/greece_flag_blue</item>
     </style>
 
     <!-- font style -->
@@ -38,91 +23,84 @@
         <item name="fontFamily">@font/roboto</item>
         <item name="android:fontFamily">@font/cinzel</item>
         <item name="android:textSize">83sp</item>
-        <item name="android:textColor">@color/primary</item>
+        <item name="android:textColor">@color/greece_flag_blue</item>
     </style>
 
     <style name="Athena.Headline2" parent="TextAppearance.MaterialComponents.Headline2" tools:keep="@style/Athena_Headline2">
         <item name="fontFamily">@font/roboto</item>
         <item name="android:fontFamily">@font/cinzel</item>
         <item name="android:textSize">52sp</item>
-        <item name="android:textColor">@color/primary</item>
+        <item name="android:textColor">@color/greece_flag_blue</item>
     </style>
 
     <style name="Athena.Headline3" parent="TextAppearance.MaterialComponents.Headline3" tools:keep="@style/Athena_Headline3">
         <item name="fontFamily">@font/roboto</item>
         <item name="android:fontFamily">@font/cinzel</item>
         <item name="android:textSize">41sp</item>
-        <item name="android:textColor">@color/primary</item>
+        <item name="android:textColor">@color/greece_flag_blue</item>
     </style>
 
     <style name="Athena.Headline4" parent="TextAppearance.MaterialComponents.Headline4" tools:keep="@style/Athena_Headline4">
         <item name="fontFamily">@font/roboto</item>
         <item name="android:fontFamily">@font/cinzel</item>
         <item name="android:textSize">29sp</item>
-        <item name="android:textColor">@color/primary</item>
+        <item name="android:textColor">@color/greece_flag_blue</item>
     </style>
 
     <style name="Athena.Headline5" parent="TextAppearance.MaterialComponents.Headline5" tools:keep="@style/Athena_Headline5">
         <item name="fontFamily">@font/roboto</item>
         <item name="android:fontFamily">@font/cinzel</item>
         <item name="android:textSize">21sp</item>
-        <item name="android:textColor">@color/primary</item>
+        <item name="android:textColor">@color/greece_flag_blue</item>
     </style>
 
     <style name="Athena.Headline6" parent="TextAppearance.MaterialComponents.Headline6" tools:keep="@style/Athena_Headline6">
         <item name="fontFamily">@font/roboto</item>
         <item name="android:fontFamily">@font/cinzel</item>
         <item name="android:textSize">17sp</item>
-        <item name="android:textColor">@color/primary</item>
+        <item name="android:textColor">@color/greece_flag_blue</item>
     </style>
 
     <style name="Athena.Subtitle1" parent="TextAppearance.MaterialComponents.Subtitle1" tools:keep="@style/Athena_Subtitle1">
         <item name="fontFamily">@font/roboto</item>
         <item name="android:fontFamily">@font/cinzel</item>
         <item name="android:textSize">14sp</item>
-        <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="Athena.Subtitle2" parent="TextAppearance.MaterialComponents.Subtitle2" tools:keep="@style/Athena_Subtitle2">
         <item name="fontFamily">@font/roboto</item>
         <item name="android:fontFamily">@font/cinzel</item>
         <item name="android:textSize">12sp</item>
-        <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="Athena.Body1" parent="TextAppearance.MaterialComponents.Body1" tools:keep="@style/Athena_Body1">
         <item name="fontFamily">@font/roboto</item>
         <item name="android:fontFamily">@font/roboto</item>
         <item name="android:textSize">16sp</item>
-        <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="Athena.Body2" parent="TextAppearance.MaterialComponents.Body2" tools:keep="@style/Athena_Body2">
         <item name="fontFamily">@font/roboto</item>
         <item name="android:fontFamily">@font/roboto</item>
         <item name="android:textSize">14sp</item>
-        <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="Athena.Button" parent="TextAppearance.MaterialComponents.Button" tools:keep="@style/Athena_Button">
         <item name="fontFamily">@font/roboto</item>
         <item name="android:fontFamily">@font/roboto</item>
         <item name="android:textSize">14sp</item>
-        <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="Athena.Caption" parent="TextAppearance.MaterialComponents.Caption" tools:keep="@style/Athena_Caption">
         <item name="fontFamily">@font/roboto</item>
         <item name="android:fontFamily">@font/roboto</item>
         <item name="android:textSize">12sp</item>
-        <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="Athena.Overline" parent="TextAppearance.MaterialComponents.Overline" tools:keep="@style/Athena_Overline">
         <item name="fontFamily">@font/roboto</item>
         <item name="android:fontFamily">@font/roboto</item>
         <item name="android:textSize">10sp</item>
-        <item name="android:textColor">@color/black</item>
     </style>
 
 </resources>

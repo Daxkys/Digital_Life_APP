@@ -1,43 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Athena</string>
-
+    <string name="cancel">Cancel</string>
+    <!-- CRUD -->
+    <string name="save">Save</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <!-- LOGIN -->
+    <string name="login">Login</string>
+    <string name="main_key">main key</string>
+    <string name="main_key_tutorial">Set your main key to login</string>
+    <string name="main_key_error_length">The main key must be 4 characters length at least</string>
+    <string name="main_key_confirmation">Confirm the main key writing it again</string>
+    <string name="main_key_error_confirm">Use the same main key as previous</string>
+    <string name="main_key_set">Main key established!</string>
+    <string name="main_key_wrong">Wrong main key!</string>
+    <!-- BIOMETRIC -->
+    <string name="fingerprint">Fingerprint</string>
+    <string name="biometric_verification">Log in Athena</string>
+    <!-- MAIN ACTIVITY -->
+    <string name="total_accounts">Accounts stored</string>
+    <string name="b_insert">Insert an account</string>
+    <!-- MAIN MENU -->
+    <string name="rate_app">Rate app in Play Store</string>
+    <string name="main_key_change">Change main key…</string>
+    <!-- ACCOUNT -->
     <string name="account">Account</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="link">Link</string>
-
-    <string name="edit">Edit</string>
-    <string name="delete">Delete</string>
-    <string name="save">Save</string>
-    <string name="enter">Enter</string>
-    <string name="gen_cancel">Cancel</string>
-    <string name="permanent_action">This action can not be undone</string>
-
-    <string name="main_key">main key</string>
-    <string name="main_key_change">Change main key…</string>
-    <string name="main_key_set">Main key established!</string>
-    <string name="main_key_error">Wrong main key!</string>
-    <string name="main_key_before">Set your main key to login and press the button to save it.</string>
-    <string name="main_key_must_length">The main key must be 4 characters length at least</string>
-    <string name="main_key_after_set">You just set the main key! You can start.</string>
-
-    <string name="fingerprint">Fingerprint</string>
-    <string name="biometric_verification">Biometric verification</string>
-    <string name="biometric_desc">Use the biometric verification system to authenticate</string>
-
+    <!-- ACCOUNT FORM -->
     <string name="fail_input_account">Put at least the account name</string>
-    <string name="total_accounts">Accounts stored</string>
-    <string name="b_insert">Insert an account</string>
-    <string name="ask_del_account">Delete this account?</string>
-
+    <string name="password_strong">Password robustness</string>
+    <string name="password_lower">Password contains lowercase letters</string>
+    <string name="password_upper">Password contains uppercase letters</string>
+    <string name="password_digit">Password contains digits</string>
+    <string name="password_symbol">Password contains symbols</string>
+    <string name="password_long">Password is longer than 11 characters</string>
+    <!-- ACCOUNT ACTIONS -->
     <string name="b_browser">Open in browser</string>
     <string name="b_copy_user">Copy username</string>
     <string name="b_copy_pass">Copy password</string>
     <string name="copy_user">username copied to the clipboard</string>
     <string name="copy_password">password copied to the clipboard</string>
     <string name="show_hide">show or hide password</string>
-    <string name="action_n_columns">Change number of columns</string>
-    <string name="password_strong">Password robustness:</string>
-    <string name="rate_app">Rate app in Play Store</string>
+    <!-- DELETE DIALOG -->
+    <string name="ask_del_account">Delete this account?</string>
+    <string name="permanent_action">This action can not be undone</string>
 </resources>
