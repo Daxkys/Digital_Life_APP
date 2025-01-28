@@ -16,8 +16,6 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.Objects;
@@ -30,8 +28,6 @@ public class Activity_login extends AppCompatActivity {
     private static final String FIRST_TIME = "FIRST_TIME";
     private static final String MAIN_KEY = "MAIN_KEY";
     public static final String RESET_KEY = "RESET_KEY";
-
-    private InterstitialAd interstitial_login;
 
     private TextView tv_firstLogin;
     private EditText et_login;
@@ -59,11 +55,6 @@ public class Activity_login extends AppCompatActivity {
 
         // control if main key is stabilized
         is_mainKey_stabilized();
-
-        // Interstitial Ad
-        interstitial_login = new InterstitialAd(this);
-        interstitial_login.setAdUnitId("ca-app-pub-9934738138092081/2614553925");
-        interstitial_login.loadAd(new AdRequest.Builder().build());
 
     }
 
@@ -160,11 +151,6 @@ public class Activity_login extends AppCompatActivity {
             Intent toMain = new Intent(this, Activity_main.class);
             startActivity(toMain);
             finish();
-
-            // Interstitial ad show when correct log in
-            if (interstitial_login.isLoaded()) {
-                interstitial_login.show();
-            }
         } else {
 
             et_login.setError(getResources().getString(R.string.main_key_error));
