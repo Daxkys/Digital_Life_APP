@@ -67,11 +67,17 @@ public class Activity_account_show extends AppCompatActivity {
         if (clipboardManager != null) {
             ib_copy_user.setOnClickListener(view -> {
                 clipboardManager.setPrimaryClip(ClipData.newPlainText("USERNAME", tv_user.getText()));
-                Snackbar.make(fab, R.string.copy_user, Snackbar.LENGTH_SHORT).setAnchorView(fab).show();
+                Snackbar.make(fab, R.string.copy_user, Snackbar.LENGTH_SHORT)
+                        .setTextColor(getResources().getColor(R.color.white))
+                        .setAnchorView(fab)
+                        .show();
             });
             ib_copy_pass.setOnClickListener(view -> {
                 clipboardManager.setPrimaryClip(ClipData.newPlainText("PASSWORD", tv_pass.getText()));
-                Snackbar.make(fab, R.string.copy_password, Snackbar.LENGTH_SHORT).setAnchorView(fab).show();
+                Snackbar.make(fab, R.string.copy_password, Snackbar.LENGTH_SHORT)
+                        .setTextColor(getResources().getColor(R.color.white))
+                        .setAnchorView(fab)
+                        .show();
             });
         }
 

@@ -133,7 +133,10 @@ public class Activity_login extends AppCompatActivity {
             editor.putString(MAIN_KEY, main_key);
             editor.apply();
 
-            Snackbar.make(b_setLogin, R.string.main_key_set, Snackbar.LENGTH_SHORT).setAnchorView(et_login).show();
+            Snackbar.make(b_setLogin, R.string.main_key_set, Snackbar.LENGTH_SHORT)
+                    .setTextColor(getResources().getColor(R.color.white))
+                    .setAnchorView(et_login)
+                    .show();
 
             // MAIN KEY STABILIZED: instructions updated, biometric is enabled and principal button now log in
             tv_firstLogin.setText(R.string.main_key_after_set);
