@@ -15,7 +15,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -38,6 +42,12 @@ public class Activity_login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        EdgeToEdge.enable(this);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
 
         // Intent extras and preferences
         preferences = getPreferences(Context.MODE_PRIVATE);
@@ -52,16 +62,20 @@ public class Activity_login extends AppCompatActivity {
         // Initialized UI
         et_login = findViewById(R.id.et_login);
         tv_firstLogin = findViewById(R.id.tv_firstLogin);
-        b_biometric = findViewById(R.id.ib_biometric);
         b_login = findViewById(R.id.b_login);
-        b_login.setOnClickListener(v -> login());
+        b_biometric = findViewById(R.id.ib_biometric);
 
-        // by default biometric button is disabled
+        // by default: first time or reset key action
         b_biometric.setVisibility(View.GONE);
-
-        // control if main key is stabilized
         b_login.setOnClickListener(v -> setMainKey());
-        is_mainKey_stabilized();
+
+        // control if main key is stabilized or not reset key action
+        if (!main_key.isEmpty() && !reset_key) {
+            tv_firstLogin.setVisibility(View.INVISIBLE);
+            b_login.setText(getString(R.string.login));
+            b_login.setOnClickListener(v -> login());
+            biometric_layout();
+        }
     }
 
     private void startActivityMain() {
@@ -93,19 +107,6 @@ public class Activity_login extends AppCompatActivity {
                             }
                     )
             );
-        }
-    }
-
-    /**
-     * Checks if main key is stabilized.
-     * If not, change the layout to give the user the power to do it
-     */
-    private void is_mainKey_stabilized() {
-        if (!main_key.isEmpty() && !reset_key) { // Instructions visible and button save main key
-            tv_firstLogin.setVisibility(View.INVISIBLE);
-            b_login.setText(getString(R.string.login));
-            b_login.setOnClickListener(v -> login());
-            biometric_layout();
         }
     }
 
