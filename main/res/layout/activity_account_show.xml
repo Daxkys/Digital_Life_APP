@@ -2,108 +2,92 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/coordinatorLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:id="@+id/main"
     tools:context=".Activity_account_show">
 
-    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/banner_account_show"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        ads:adSize="SMART_BANNER"
-        ads:adUnitId="ca-app-pub-9934738138092081/7339226369" />
-
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:background="@drawable/recycler_item"
             android:orientation="vertical"
             android:padding="16dp">
 
             <TextView
                 android:id="@+id/tv_account"
+                style="@style/Athena.Headline4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/account"
-                android:textColor="@color/white"
-                style="@style/Athena.Headline4" />
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="8dp" />
+                android:text="@string/account" />
 
             <TextView
-                android:id="@+id/tv_username"
+                android:id="@+id/tv_link"
+                style="@style/Athena.Caption"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/username"
-                android:textColor="@color/white"
-                style="@style/Athena.Body1" />
+                android:text="@string/link" />
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="4dp" />
-
-            <TextView
-                android:id="@+id/tv_password"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/password"
-                android:textColor="@color/white"
-                style="@style/Athena.Body1" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_username"
+                    style="@style/Athena.Body1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="@string/username" />
+
+                <ImageButton
+                    android:id="@+id/ib_copy_username"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@null"
+                    app:srcCompat="@drawable/ic_copy"
+                    app:tint="@color/greece_flag_blue" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_password"
+                    style="@style/Athena.Body1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="@string/password" />
+
+                <ImageButton
+                    android:id="@+id/ib_copy_password"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@null"
+                    app:srcCompat="@drawable/ic_copy"
+                    app:tint="@color/greece_flag_blue" />
+            </LinearLayout>
 
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <Button
-                android:id="@+id/copy_user"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/b_copy_user"
-                app:icon="@drawable/ic_copy"
-                app:iconGravity="textStart" />
-
-            <Button
-                android:id="@+id/copy_pass"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/b_copy_pass"
-                app:icon="@drawable/ic_copy"
-                app:iconGravity="textStart" />
-
-        </LinearLayout>
-
-    </LinearLayout>
+    </ScrollView>
 
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        app:fabAnimationMode="slide"
-        app:hideOnScroll="false"
+        android:theme="@style/BottomAppBarTheme"
+        app:hideOnScroll="true"
         app:menu="@menu/menu_account_show" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -111,7 +95,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/show_hide"
-        android:onClick="showHide_password"
         app:layout_anchor="@id/bar"
         app:srcCompat="@drawable/ic_show" />
 

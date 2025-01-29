@@ -5,21 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:id="@+id/main"
     tools:context=".Activity_account_form">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:scrollbars="vertical">
-
-        <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/banner_account_form"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            ads:adSize="SMART_BANNER"
-            ads:adUnitId="ca-app-pub-9934738138092081/5199671858" />
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:id="@+id/ll_form"
@@ -34,18 +25,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/account"
-                app:errorEnabled="true"
-                app:counterEnabled="true"
-                app:counterMaxLength="20"
-                app:endIconMode="clear_text">
+                app:endIconMode="clear_text"
+                app:errorEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_name"
+                    style="@style/Athena.Body1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textCapWords"
-                    android:singleLine="true"
-                    style="@style/Athena.Body1" />
+                    android:singleLine="true" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -60,11 +49,11 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_link"
+                    style="@style/Athena.Body1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textWebEditText"
-                    android:singleLine="true"
-                    style="@style/Athena.Body1" />
+                    android:singleLine="true" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -79,10 +68,10 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_user"
+                    style="@style/Athena.Body1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:singleLine="true"
-                    style="@style/Athena.Body1" />
+                    android:singleLine="true" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -93,56 +82,80 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/password"
                 app:endIconMode="password_toggle"
+                app:counterEnabled="true"
                 app:startIconContentDescription="@string/password"
                 app:startIconDrawable="@drawable/ic_lock">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_pass"
+                    style="@style/Athena.Body1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
-                    android:singleLine="true"
-                    style="@style/Athena.Body1" />
+                    android:singleLine="true" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
-                android:id="@+id/tv_percent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:textColor="@color/black"
+                android:layout_marginTop="16dp"
                 android:text="@string/password_strong" />
 
-            <ProgressBar
-                android:id="@+id/progressBar"
-                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            <CheckBox
+                android:id="@+id/cb_lower"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="4dp"
-                android:progressTint="@color/primary"
-                android:progressBackgroundTint="@color/black"
-                android:progress="0"
-                tools:targetApi="lollipop" />
+                android:clickable="false"
+                android:text="@string/password_lower" />
 
+            <CheckBox
+                android:id="@+id/cb_upper"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="false"
+                android:text="@string/password_upper" />
+
+            <CheckBox
+                android:id="@+id/cb_digit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="false"
+                android:text="@string/password_digit" />
+
+            <CheckBox
+                android:id="@+id/cb_symbol"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="false"
+                android:text="@string/password_symbol" />
+
+            <CheckBox
+                android:id="@+id/cb_long"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="false"
+                android:text="@string/password_long" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="64dp" />
         </LinearLayout>
-
-    </LinearLayout>
+    </ScrollView>
 
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        app:fabAnimationMode="slide"
-        app:hideOnScroll="false" />
+        android:theme="@style/BottomAppBarTheme"
+        app:hideOnScroll="true" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_account_show"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/save"
-        android:onClick="buttonOK"
         app:layout_anchor="@id/bar"
         app:srcCompat="@drawable/ic_save" />
 

@@ -1,7 +1,6 @@
 package example.digitallife;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -9,196 +8,148 @@ import android.hardware.biometrics.BiometricPrompt;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CancellationSignal;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.InterstitialAd;
-import com.google.android.material.snackbar.Snackbar;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 public class Activity_login extends AppCompatActivity {
 
-    private SharedPreferences login_preference;
-    private static final String FIRST_TIME = "FIRST_TIME";
-    private static final String MAIN_KEY = "MAIN_KEY";
-    public static final String RESET_KEY = "RESET_KEY";
-
-    private InterstitialAd interstitial_login;
+    private SharedPreferences preferences;
+    public static final String EXTRA_RESET_KEY = "RESET_KEY";
+    public static final String KEY_MAIN_KEY = "MAIN_KEY";
+    private String main_key = null;
+    private String first_key = null;
+    private boolean reset_key = false;
 
     private TextView tv_firstLogin;
     private EditText et_login;
-    private Button b_setLogin;
-    private Button ib_biometric;
+    private Button b_login;
+    private Button b_biometric;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        EdgeToEdge.enable(this);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
 
+        // Intent extras and preferences
+        preferences = getPreferences(Context.MODE_PRIVATE);
+        main_key = preferences.getString(KEY_MAIN_KEY, "");
+        reset_key = getIntent().getBooleanExtra(EXTRA_RESET_KEY, false);
+        Log.d(KEY_MAIN_KEY, main_key);
+        Log.d(EXTRA_RESET_KEY, String.valueOf(reset_key));
+
+        // obfuscate the activity
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
 
-        // Initialized UI vars
+        // Initialized UI
         et_login = findViewById(R.id.et_login);
         tv_firstLogin = findViewById(R.id.tv_firstLogin);
-        b_setLogin = findViewById(R.id.b_setLogin);
-        ib_biometric = findViewById(R.id.ib_biometric);
+        b_login = findViewById(R.id.b_login);
+        b_biometric = findViewById(R.id.ib_biometric);
 
-        // load memory preference
-        login_preference = getPreferences(Context.MODE_PRIVATE);
+        // by default: first time or reset key action
+        b_biometric.setVisibility(View.GONE);
+        b_login.setOnClickListener(v -> setMainKey());
 
-        // Post layout initialization, set the biometrics control
-        biometric_layout();
+        // control if main key is stabilized or not reset key action
+        if (!main_key.isEmpty() && !reset_key) {
+            tv_firstLogin.setVisibility(View.INVISIBLE);
+            b_login.setText(getString(R.string.login));
+            b_login.setOnClickListener(v -> login());
+            biometric_layout();
+        }
+    }
 
-        // control if main key is stabilized
-        is_mainKey_stabilized();
-
-        // Ad Banner
-        AdView banner = findViewById(R.id.banner_login);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        banner.loadAd(adRequest);
-
-        // Interstitial Ad
-        interstitial_login = new InterstitialAd(this);
-        interstitial_login.setAdUnitId("ca-app-pub-9934738138092081/2614553925");
-        interstitial_login.loadAd(new AdRequest.Builder().build());
-
+    private void startActivityMain() {
+        startActivity(new Intent(this, Activity_main.class));
+        finish();
     }
 
     private void biometric_layout() {
-
-        boolean biometric_enabled;
-
-        // by default biometric feature is disabled
-        ib_biometric.setVisibility(View.INVISIBLE);
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-
             // checks biometric
-            biometric_enabled = getApplicationContext().getPackageManager().hasSystemFeature(PackageManager.FEATURE_FINGERPRINT);
+            boolean biometric_enabled = getApplicationContext().getPackageManager().hasSystemFeature(PackageManager.FEATURE_FINGERPRINT);
             if (biometric_enabled)
-                ib_biometric.setVisibility(View.VISIBLE);
+                b_biometric.setVisibility(View.VISIBLE);
 
             final Executor executor = Executors.newSingleThreadExecutor();
 
             final BiometricPrompt biometricPrompt = new BiometricPrompt.Builder(this)
                     .setTitle(getString(R.string.biometric_verification))
-                    .setDescription(getString(R.string.biometric_desc))
-                    .setNegativeButton(getString(R.string.gen_cancel), executor, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-
-                        }
+                    .setNegativeButton(getString(R.string.cancel), executor, (dialog, which) -> {
                     }).build();
 
-            ib_biometric.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    biometricPrompt.authenticate(new CancellationSignal(), executor, new BiometricPrompt.AuthenticationCallback() {
-                        @Override
-                        public void onAuthenticationSucceeded(BiometricPrompt.AuthenticationResult result) {
-                            runOnUiThread(new Runnable() {
+            b_biometric.setOnClickListener(v -> biometricPrompt.authenticate(
+                            new CancellationSignal(), executor,
+                            new BiometricPrompt.AuthenticationCallback() {
                                 @Override
-                                public void run() {
-                                    login(ib_biometric);
+                                public void onAuthenticationSucceeded(BiometricPrompt.AuthenticationResult result) {
+                                    runOnUiThread(() -> startActivityMain());
                                 }
-                            });
-                        }
-                    });
-                }
-            });
-
-        }
-    }
-
-    /**
-     * Checks if main key is stabilized.
-     * If not, change the layout to give the user the power to do it
-     */
-    private void is_mainKey_stabilized() {
-
-        boolean first_time = login_preference.getBoolean(FIRST_TIME, true);
-        boolean reset_key = getIntent().getBooleanExtra(RESET_KEY, false);
-
-        if (first_time || reset_key) {
-
-            // Instructions visible and log in by biometric off
-            tv_firstLogin.setVisibility(View.VISIBLE);
-            ib_biometric.setVisibility(View.INVISIBLE);
-
-            // principal button changed action to set the main key
-            b_setLogin.setText(R.string.save);
-            b_setLogin.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    setMainKey();
-                }
-            });
-
-        } else {
-
-            // Instructions invisible and log by biometric on
-            tv_firstLogin.setVisibility(View.INVISIBLE);
-            ib_biometric.setVisibility(View.VISIBLE);
-
-            b_setLogin.setText(R.string.enter); // Reset of text to log on
+                            }
+                    )
+            );
         }
     }
 
     private void setMainKey() {
+        String et_text = et_login.getText().toString();
 
-        String main_key = et_login.getText().toString();
-
-        if (main_key.length() < 4) {
-            et_login.setError(getResources().getString(R.string.main_key_must_length));
-        } else {
-            // SHAVED NEW MAIN KEY
-            SharedPreferences.Editor editor = login_preference.edit();
-            editor.putBoolean(FIRST_TIME, false);
-            editor.putString(MAIN_KEY, main_key);
-            editor.apply();
-
-            Snackbar.make(b_setLogin, R.string.main_key_set, Snackbar.LENGTH_SHORT).setAnchorView(et_login).show();
-
-            // MAIN KEY STABILIZED: instructions updated, biometric is enabled and principal button now log in
-            tv_firstLogin.setText(R.string.main_key_after_set);
-            ib_biometric.setVisibility(View.VISIBLE);
-            b_setLogin.setText(R.string.enter);
-            b_setLogin.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    login(view);
-                }
-            });
+        if (et_text.length() < 4) {
+            et_login.setError(getString(R.string.main_key_error_length));
+            return;
         }
+        if (first_key == null) {
+            first_key = et_text;
+            et_login.setText("");
+            tv_firstLogin.setText(R.string.main_key_confirmation);
+            return;
+        }
+        if (!first_key.equals(et_text)) {
+            et_login.setText("");
+            et_login.setError(getString(R.string.main_key_error_confirm));
+            return;
+        }
+
+        main_key = et_text;
+        // SHAVE NEW MAIN KEY
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(KEY_MAIN_KEY, main_key);
+        editor.apply();
+
+        tv_firstLogin.setText(R.string.main_key_set);
+        b_login.setText(R.string.login);
+        b_login.setOnClickListener(v -> login());
+        biometric_layout();
     }
 
-    public void login(View view) {
+    private void login() {
+        String et_text = et_login.getText().toString();
 
-        String s_login = et_login.getText().toString();
-
-        if (login_preference.getString(MAIN_KEY, "").equals(s_login) || view == ib_biometric) {
-            Intent toMain = new Intent(this, Activity_main.class);
-            startActivity(toMain);
-            finish();
-
-            // Interstitial ad show when correct log in
-            if (interstitial_login.isLoaded()) {
-                interstitial_login.show();
-            }
-        } else {
-
-            et_login.setError(getResources().getString(R.string.main_key_error));
+        if (!et_text.equals(main_key)) {
+            et_login.setError(getResources().getString(R.string.main_key_wrong));
             et_login.setText("");
+            return;
         }
+        startActivityMain();
     }
 
 }

@@ -1,19 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <color name="primary">@color/triadic1</color>
-    <color name="secondary">@color/green_oliveDrab</color>
-    <color name="accent">@color/complementary</color>
+<resources>
 
     <color name="black">#000000</color>
     <color name="white">#ffffff</color>
 
-    <!-- brand colors -->
-    <color name="green_oliveDrab">#6B8E23</color>
-    <color name="complementary">#47238e</color>
-    <color name="analogous1" tools:keep="@color/analogous1">#8e7c23</color>
-    <color name="analogous2" tools:keep="@color/analogous2">#358e23</color>
-    <color name="triadic1">#238e47</color>
-    <color name="triadic2" tools:keep="@color/triadic2">#236a8e</color>
-
-    <color name="red_500">#f44336</color>
+    <!-- flags colors -->
+    <color name="greece_flag_blue">#0D5EAF</color>
+    <color name="athens_flag_blue">#050490</color>
+    <color name="athens_flag_red">#bd1b19</color>
+    <color name="athens_flag_gold">#e4d33b</color>
 </resources>

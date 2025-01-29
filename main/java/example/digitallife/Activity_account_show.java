@@ -4,26 +4,28 @@ import android.annotation.SuppressLint;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.method.PasswordTransformationMethod;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
+import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+
+import java.util.Objects;
 
 public class Activity_account_show extends AppCompatActivity {
 
@@ -42,28 +44,32 @@ public class Activity_account_show extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_show);
+        EdgeToEdge.enable(this);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
-
-        // UI block code
-        AdView banner = findViewById(R.id.banner_account_show);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        banner.loadAd(adRequest);
 
         // BottomAppBar config
         BottomAppBar bottomAppBar = findViewById(R.id.bar);
         setSupportActionBar(bottomAppBar);
 
         fab = findViewById(R.id.fab_account_show);
-        Button ib_copy_user = findViewById(R.id.copy_user);
-        Button ib_copy_pass = findViewById(R.id.copy_pass);
+        fab.setOnClickListener(v -> passwordShowHide());
+        ImageButton ib_copy_user = findViewById(R.id.ib_copy_username);
+        ImageButton ib_copy_pass = findViewById(R.id.ib_copy_password);
         TextView tv_name = findViewById(R.id.tv_account);
+        TextView tv_link = findViewById(R.id.tv_link);
         tv_user = findViewById(R.id.tv_username);
         tv_pass = findViewById(R.id.tv_password);
         tv_pass.setTransformationMethod(new PasswordTransformationMethod());
 
         Intent i = getIntent();
         tv_name.setText(i.getStringExtra(NAME));
+        tv_link.setText(i.getStringExtra(LINK));
         tv_user.setText(i.getStringExtra(USER));
         tv_pass.setText(i.getStringExtra(PASS));
 
@@ -71,19 +77,17 @@ public class Activity_account_show extends AppCompatActivity {
         final ClipboardManager clipboardManager = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
 
         if (clipboardManager != null) {
-            ib_copy_user.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    clipboardManager.setPrimaryClip(ClipData.newPlainText("USERNAME", tv_user.getText()));
-                    Snackbar.make(fab, R.string.copy_user, Snackbar.LENGTH_SHORT).setAnchorView(fab).show();
-                }
+            ib_copy_user.setOnClickListener(view -> {
+                clipboardManager.setPrimaryClip(ClipData.newPlainText("USERNAME", tv_user.getText()));
+                Snackbar.make(fab, R.string.copy_user, Snackbar.LENGTH_SHORT)
+                        .setAnchorView(fab)
+                        .show();
             });
-            ib_copy_pass.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    clipboardManager.setPrimaryClip(ClipData.newPlainText("PASSWORD", tv_pass.getText()));
-                    Snackbar.make(fab, R.string.copy_password, Snackbar.LENGTH_SHORT).setAnchorView(fab).show();
-                }
+            ib_copy_pass.setOnClickListener(view -> {
+                clipboardManager.setPrimaryClip(ClipData.newPlainText("PASSWORD", tv_pass.getText()));
+                Snackbar.make(fab, R.string.copy_password, Snackbar.LENGTH_SHORT)
+                        .setAnchorView(fab)
+                        .show();
             });
         }
 
@@ -113,19 +117,13 @@ public class Activity_account_show extends AppCompatActivity {
                 new MaterialAlertDialogBuilder(this)
                         .setTitle(R.string.ask_del_account)
                         .setMessage(R.string.permanent_action)
-                        .setNegativeButton(R.string.gen_cancel, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
+                        .setNegativeButton(R.string.cancel, (dialog, which) -> {
 
-                            }
                         })
-                        .setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                intent.putExtra("ACTION", "DELETE");
-                                setResult(RESULT_OK, intent);
-                                finish();
-                            }
+                        .setPositiveButton(R.string.delete, (dialog, which) -> {
+                            intent.putExtra("ACTION", "DELETE");
+                            setResult(RESULT_OK, intent);
+                            finish();
                         })
                         .show();
 
@@ -133,7 +131,7 @@ public class Activity_account_show extends AppCompatActivity {
                 return true;
 
             case R.id.action_go_web:
-                openWebPage(getIntent().getStringExtra(LINK));
+                openWebPage(Objects.requireNonNull(getIntent().getStringExtra(LINK)));
                 return true;
 
             default:
@@ -145,14 +143,10 @@ public class Activity_account_show extends AppCompatActivity {
         if (!(url.startsWith("http://") && url.startsWith("https://"))) {
             url = "http://" + url;
         }
-        Intent browser = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-        if (browser.resolveActivity(getPackageManager()) != null) {
-            startActivity(browser);
-        }
+        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
     }
 
-    public void showHide_password(View view) {
-        view.animate();
+    public void passwordShowHide() {
         if (show_password) {
             tv_pass.setTransformationMethod(null);
             fab.setImageResource(R.drawable.ic_hide);

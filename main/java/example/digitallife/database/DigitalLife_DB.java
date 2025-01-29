@@ -21,9 +21,7 @@ public abstract class DigitalLife_DB extends RoomDatabase {
         return instance;
     }
 
-    /*
     public static void destroyInstance() {
         instance = null;
     }
-     */
 }
