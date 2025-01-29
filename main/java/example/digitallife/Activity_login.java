@@ -8,6 +8,7 @@ import android.hardware.biometrics.BiometricPrompt;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CancellationSignal;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -39,9 +40,11 @@ public class Activity_login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         // Intent extras and preferences
-        reset_key = getIntent().getBooleanExtra(EXTRA_RESET_KEY, false);
         preferences = getPreferences(Context.MODE_PRIVATE);
         main_key = preferences.getString(KEY_MAIN_KEY, "");
+        reset_key = getIntent().getBooleanExtra(EXTRA_RESET_KEY, false);
+        Log.d(KEY_MAIN_KEY, main_key);
+        Log.d(EXTRA_RESET_KEY, String.valueOf(reset_key));
 
         // obfuscate the activity
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
@@ -98,7 +101,7 @@ public class Activity_login extends AppCompatActivity {
      * If not, change the layout to give the user the power to do it
      */
     private void is_mainKey_stabilized() {
-        if (main_key != null && !reset_key) { // Instructions visible and button save main key
+        if (!main_key.isEmpty() && !reset_key) { // Instructions visible and button save main key
             tv_firstLogin.setVisibility(View.INVISIBLE);
             b_login.setText(getString(R.string.login));
             b_login.setOnClickListener(v -> login());
